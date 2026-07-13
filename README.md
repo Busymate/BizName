@@ -192,3 +192,4 @@ npm run preview     # sanity-check the production build locally
 
 No environment variables, API keys, or server config are required —
 this is a fully static site.
+# Biz-name
