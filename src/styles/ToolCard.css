@@ -1,0 +1,94 @@
+.bn-tool-card {
+  position: relative;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.bn-tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  border-color: var(--bn-primary);
+}
+
+.bn-tool-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--bn-success);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.bn-tool-fav {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--bn-text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.bn-tool-fav.is-fav {
+  color: #f59e0b;
+}
+
+.bn-tool-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.bn-tool-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.bn-tool-card p {
+  color: var(--bn-text-secondary);
+  font-size: 0.88rem;
+  margin: 0;
+  flex: 1;
+}
+
+.bn-tool-link {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--bn-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.bn-tool-link i {
+  font-size: 0.75rem;
+  transition: transform 0.15s ease;
+}
+
+.bn-tool-card:hover .bn-tool-link i {
+  transform: translateX(3px);
+}

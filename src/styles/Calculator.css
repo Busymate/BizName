@@ -1,0 +1,132 @@
+/* Shared 2-column calculator layout: form on the left, results on the
+   right. Imported by every calculator-style tool page's own CSS file so
+   each page stays independently lazy-loadable while sharing one look. */
+
+.bn-calc-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.bn-calc-form h3,
+.bn-calc-results h3 {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}
+
+.bn-calc-form .bn-btn {
+  margin-top: 0.5rem;
+}
+
+.bn-calc-results {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bn-calc-breakdown-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--bn-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.bn-calc-note {
+  font-size: 0.82rem;
+  color: var(--bn-text-secondary);
+  background: var(--bn-bg);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.bn-calc-note ul,
+.bn-calc-note ol {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.bn-calc-quick-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.bn-calc-quick-btn {
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  border-radius: 8px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--bn-text-secondary);
+}
+
+.bn-calc-quick-btn:hover {
+  border-color: var(--bn-primary);
+  color: var(--bn-primary);
+}
+
+.bn-calc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 0.75rem;
+}
+
+.bn-calc-table th,
+.bn-calc-table td {
+  padding: 0.5rem 0.4rem;
+  text-align: right;
+  border-bottom: 1px solid var(--bn-border);
+}
+
+.bn-calc-table th:first-child,
+.bn-calc-table td:first-child {
+  text-align: left;
+}
+
+.bn-saved-list {
+  margin-top: 1.5rem;
+}
+
+.bn-saved-list h3 {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}
+
+.bn-saved-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--bn-border);
+  font-size: 0.88rem;
+}
+
+.bn-saved-row:last-child {
+  border-bottom: none;
+}
+
+.bn-saved-row button {
+  background: none;
+  border: none;
+  color: var(--bn-danger);
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .bn-calc-layout {
+    grid-template-columns: 1fr;
+  }
+  .bn-calc-results {
+    position: static;
+  }
+}

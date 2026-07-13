@@ -1,0 +1,121 @@
+.bn-templates-page {
+  padding: 2rem 1.5rem 4rem;
+}
+
+.bn-templates-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.bn-templates-header p {
+  color: var(--bn-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.bn-templates-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  max-width: 560px;
+  margin-bottom: 1.5rem;
+}
+
+.bn-templates-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--bn-text);
+}
+
+.bn-template-filters {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.bn-template-filters button {
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--bn-text-secondary);
+}
+
+.bn-template-filters button.active {
+  background: var(--bn-primary);
+  border-color: var(--bn-primary);
+  color: #fff;
+}
+
+.bn-template-card {
+  position: relative;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bn-template-bookmark {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--bn-text-secondary);
+  cursor: pointer;
+}
+
+.bn-template-bookmark.is-active {
+  color: #f59e0b;
+}
+
+.bn-template-thumb {
+  height: 100px;
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.bn-template-card h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.bn-template-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+  flex: 1;
+}
+
+.bn-template-formats {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.bn-template-formats span {
+  font-size: 0.7rem;
+  background: var(--bn-bg);
+  border: 1px solid var(--bn-border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  color: var(--bn-text-secondary);
+}

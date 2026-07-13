@@ -1,0 +1,7 @@
+@import './Calculator.css';
+
+.bn-table-scroll {
+  overflow-x: auto;
+  max-height: 420px;
+  overflow-y: auto;
+}

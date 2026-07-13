@@ -1,0 +1,37 @@
+.bn-notfound-page {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.bn-notfound-icon {
+  font-size: 3rem;
+  color: var(--bn-primary);
+  margin-bottom: 1rem;
+}
+
+.bn-notfound-page h1 {
+  font-size: 4rem;
+  margin: 0;
+  color: var(--bn-primary);
+}
+
+.bn-notfound-page h2 {
+  font-size: 1.4rem;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.bn-notfound-page p {
+  color: var(--bn-text-secondary);
+  max-width: 420px;
+  margin-bottom: 1.75rem;
+}
+
+.bn-notfound-actions {
+  display: flex;
+  gap: 0.75rem;
+}

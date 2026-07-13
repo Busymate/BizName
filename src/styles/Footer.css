@@ -1,0 +1,132 @@
+.bn-footer {
+  background: var(--bn-footer-bg);
+  color: var(--bn-footer-text);
+  margin-top: 4rem;
+}
+
+.bn-footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 2.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.4fr;
+  gap: 2rem;
+}
+
+.bn-footer .bn-logo-text,
+.bn-footer .bn-logo-badge {
+  color: #fff;
+}
+
+.bn-footer-brand p {
+  color: var(--bn-footer-muted);
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.bn-social-links {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.bn-social-links a {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.bn-social-links a:hover {
+  background: var(--bn-primary);
+}
+
+.bn-footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.bn-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.bn-footer-col a {
+  color: var(--bn-footer-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.15s ease;
+}
+
+.bn-footer-col a:hover {
+  color: #fff;
+}
+
+.bn-newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bn-newsletter-form input {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  min-width: 0;
+}
+
+.bn-newsletter-form button {
+  background: var(--bn-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.bn-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--bn-footer-muted);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.bn-footer-bottom a {
+  color: var(--bn-footer-muted);
+  text-decoration: none;
+  margin-left: 1.25rem;
+}
+
+.bn-footer-bottom a:hover {
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .bn-footer-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .bn-footer-inner {
+    grid-template-columns: 1fr;
+  }
+}

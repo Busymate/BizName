@@ -1,0 +1,7 @@
+@import './Calculator.css';
+@import './DiscountCalculator.css';
+
+.bn-calc-row-active td {
+  color: var(--bn-primary);
+  font-weight: 700;
+}

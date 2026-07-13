@@ -1,0 +1,37 @@
+.bn-ad-slot {
+  border: 1px dashed var(--bn-border);
+  border-radius: 12px;
+  background: var(--bn-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bn-text-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.bn-ad-banner {
+  width: 100%;
+  min-height: 90px;
+  margin: 2rem 0;
+}
+
+.bn-ad-sidebar {
+  width: 100%;
+  min-height: 250px;
+  margin: 1.5rem 0;
+}
+
+.bn-ad-in-content {
+  width: 100%;
+  min-height: 100px;
+  margin: 1.5rem 0;
+}
+
+.bn-ad-sponsored {
+  width: 100%;
+  min-height: 120px;
+  margin: 1.5rem 0;
+  border-style: solid;
+}

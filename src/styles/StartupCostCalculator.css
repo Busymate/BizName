@@ -1,0 +1,37 @@
+@import './Calculator.css';
+
+.bn-startup-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.bn-startup-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 32px;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.bn-startup-row input {
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  font-size: 0.85rem;
+}
+
+.bn-startup-row button {
+  background: none;
+  border: none;
+  color: var(--bn-danger);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .bn-startup-layout {
+    grid-template-columns: 1fr;
+  }
+}

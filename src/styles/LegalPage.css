@@ -1,0 +1,26 @@
+.bn-legal-page {
+  max-width: 780px;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.bn-legal-page h1 {
+  font-size: 2.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.bn-legal-updated {
+  color: var(--bn-text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.bn-legal-page h2 {
+  font-size: 1.15rem;
+  margin: 1.75rem 0 0.6rem;
+}
+
+.bn-legal-page p {
+  color: var(--bn-text-secondary);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}

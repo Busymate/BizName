@@ -1,0 +1,92 @@
+.bn-swot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.bn-swot-quadrant {
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--bn-border);
+}
+
+.bn-swot-quadrant h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}
+
+.bn-swot-quadrant h4 span {
+  margin-left: auto;
+  background: rgba(0,0,0,0.06);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.78rem;
+}
+
+.bn-swot-green { background: #ecfdf5; }
+.bn-swot-orange { background: #fff7ed; }
+.bn-swot-blue { background: #eff6ff; }
+.bn-swot-red { background: #fef2f2; }
+
+[data-theme='dark'] .bn-swot-green,
+[data-theme='dark'] .bn-swot-orange,
+[data-theme='dark'] .bn-swot-blue,
+[data-theme='dark'] .bn-swot-red {
+  background: var(--bn-surface);
+}
+
+.bn-swot-quadrant ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.bn-swot-quadrant li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.bn-swot-quadrant li button {
+  background: none;
+  border: none;
+  color: var(--bn-text-secondary);
+  cursor: pointer;
+}
+
+.bn-swot-add {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bn-swot-add input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--bn-border);
+  font-size: 0.85rem;
+  background: var(--bn-surface);
+  color: var(--bn-text);
+}
+
+.bn-swot-add button {
+  border: none;
+  background: var(--bn-primary);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0 0.9rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .bn-swot-grid {
+    grid-template-columns: 1fr;
+  }
+}

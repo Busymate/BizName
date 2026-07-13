@@ -1,0 +1,38 @@
+import { useParams, Link, Navigate } from 'react-router-dom';
+import SEO from '../components/SEO';
+import AdSlot from '../components/AdSlot';
+import { getPostBySlug } from '../data/blogPosts';
+import '../styles/BlogPost.css';
+
+export default function BlogPost() {
+  const { slug } = useParams();
+  const post = getPostBySlug(slug);
+
+  if (!post) return <Navigate to="/404" replace />;
+
+  return (
+    <div className="bn-container bn-blog-post">
+      <SEO title={post.title} description={post.excerpt} path={`/blog/${post.slug}`} />
+
+      <div className="bn-breadcrumb">
+        <Link to="/">Home</Link> <i className="fa-solid fa-chevron-right" /> <Link to="/blog">Blog</Link> <i className="fa-solid fa-chevron-right" /> <span>{post.title}</span>
+      </div>
+
+      <span className="bn-article-cat">{post.category}</span>
+      <h1>{post.title}</h1>
+      <span className="bn-article-meta">{post.date} · {post.readTime}</span>
+
+      <div className="bn-blog-post-thumb"><img src={post.image} alt="" /></div>
+
+      <AdSlot type="in-content" />
+
+      <div className="bn-blog-post-content">
+        <p>{post.content}</p>
+      </div>
+
+      <AdSlot type="in-content" />
+
+      <Link to="/blog" className="bn-back-link"><i className="fa-solid fa-arrow-left" /> Back to Blog</Link>
+    </div>
+  );
+}

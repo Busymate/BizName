@@ -1,0 +1,52 @@
+.bn-gen-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.bn-gen-form h3,
+.bn-gen-results h3 {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}
+
+.bn-gen-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.bn-gen-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bn-bg);
+  border: 1px solid var(--bn-border);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.bn-gen-like {
+  background: none;
+  border: none;
+  color: var(--bn-text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.bn-gen-like.is-liked {
+  color: var(--bn-danger);
+}
+
+@media (max-width: 900px) {
+  .bn-gen-layout {
+    grid-template-columns: 1fr;
+  }
+}

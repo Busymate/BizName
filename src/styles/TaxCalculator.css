@@ -1,0 +1,15 @@
+@import './Calculator.css';
+@import './PricingCalculator.css';
+
+.bn-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.bn-checkbox-row input {
+  width: auto;
+}

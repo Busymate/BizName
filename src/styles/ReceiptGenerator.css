@@ -1,0 +1,12 @@
+/* Receipt Generator reuses the shared invoice/document layout classes
+   (.bn-invoice-layout, .bn-invoice-form, .bn-invoice-preview, .bn-card,
+   .bn-saved-list, .bn-result-row, .bn-result-highlight). Import them here
+   so this page has the styles even though it's lazy-loaded independently. */
+@import './InvoiceGenerator.css';
+
+.bn-receipt-business {
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}

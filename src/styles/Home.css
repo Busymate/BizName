@@ -1,0 +1,255 @@
+.bn-hero {
+  background: linear-gradient(180deg, var(--bn-primary-soft) 0%, transparent 100%);
+  padding: 4rem 0 2rem;
+}
+
+.bn-hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.bn-hero-text h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+}
+
+.bn-text-accent {
+  color: var(--bn-primary);
+}
+
+.bn-hero-text > p {
+  color: var(--bn-text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 1.75rem;
+}
+
+.bn-hero-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 14px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  max-width: 560px;
+  box-shadow: var(--bn-shadow);
+}
+
+.bn-hero-search i {
+  color: var(--bn-text-secondary);
+}
+
+.bn-hero-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+  color: var(--bn-text);
+}
+
+.bn-hero-badges {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-hero-badges span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bn-hero-badges i {
+  color: var(--bn-success);
+}
+
+.bn-hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.bn-hero-visual-card {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  box-shadow: var(--bn-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 2.5rem;
+  color: var(--bn-primary);
+}
+
+.bn-category-strip .bn-category-card {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--bn-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bn-category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--bn-shadow);
+}
+
+.bn-category-card i {
+  font-size: 1.5rem;
+  color: var(--bn-primary);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.bn-category-card h4 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.bn-category-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-tip-card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: var(--bn-text);
+}
+
+.bn-tip-card i {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.bn-tip-card h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.bn-tip-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-tip-blue { background: #eff6ff; }
+.bn-tip-green { background: #ecfdf5; }
+.bn-tip-purple { background: #f5f3ff; }
+.bn-tip-orange { background: #fff7ed; }
+
+[data-theme='dark'] .bn-tip-blue,
+[data-theme='dark'] .bn-tip-green,
+[data-theme='dark'] .bn-tip-purple,
+[data-theme='dark'] .bn-tip-orange {
+  background: var(--bn-surface);
+}
+
+.bn-article-card {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--bn-text);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bn-article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--bn-shadow);
+}
+
+.bn-article-thumb {
+  height: 120px;
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.bn-article-card > *:not(.bn-article-thumb) {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.bn-article-cat {
+  color: var(--bn-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+.bn-article-card h4 {
+  font-size: 0.98rem;
+  margin: 0.4rem 0;
+}
+
+.bn-article-card p {
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+  margin: 0 0 0.75rem;
+  flex: 1;
+}
+
+.bn-article-meta {
+  font-size: 0.78rem;
+  color: var(--bn-text-secondary);
+  padding-bottom: 1.25rem;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .bn-hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .bn-hero-text h1 {
+    font-size: 2.2rem;
+  }
+}
+.bn-hero-visual {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.bn-hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.bn-article-thumb {
+  width: 100%;
+  height: 160px;       /* adjust to whatever thumb height fits your card */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.bn-article-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
