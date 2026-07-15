@@ -31,6 +31,7 @@
 }
 
 .bn-invoice-item-row input {
+  min-width: 0;
   padding: 0.55rem 0.7rem;
   border-radius: 8px;
   border: 1px solid var(--bn-border);
@@ -200,5 +201,10 @@
 @media (max-width: 640px) {
   .bn-input-row {
     grid-template-columns: 1fr;
+  }
+  .bn-invoice-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }

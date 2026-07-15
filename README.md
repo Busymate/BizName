@@ -192,4 +192,55 @@ npm run preview     # sanity-check the production build locally
 
 No environment variables, API keys, or server config are required —
 this is a fully static site.
-# Biz-name
+
+## 10. Google AdSense + Search Console Checklist
+
+Everything below is already in place in this codebase. Before submitting
+your site for review, update your real domain everywhere it currently
+says `bizname.example.com` (see the grep command at the end of this
+section), then go through this list:
+
+**Already included:**
+- ✅ `public/ads.txt` with your publisher ID (`google.com, pub-9529159848617968, DIRECT, f08c47fec0942fa0`)
+- ✅ AdSense loader script live in `index.html` with your real client ID (`ca-pub-9529159848617968`)
+- ✅ Google Search Console ownership verification meta tag in `index.html` (`google-site-verification`)
+- ✅ `AdSlot.jsx` only ever renders a real `<ins class="adsbygoogle">` unit once BOTH the client ID and that placement's slot ID are filled in — until you add real slot IDs, every ad position safely shows the placeholder box instead of a broken/blank ad unit. This matters for review: a live site with broken ad tags looks bad to both visitors and reviewers.
+- ✅ Privacy Policy with explicit Google AdSense / cookie disclosure, DART cookie mention, and opt-out links (`src/pages/PrivacyPolicy.jsx`)
+- ✅ Terms of Service (`src/pages/TermsOfService.jsx`)
+- ✅ About Us page with real mission/vision copy, not placeholder text (`src/pages/About.jsx`)
+- ✅ Contact page with a working contact form, FAQ, and business hours (`src/pages/Contact.jsx`)
+- ✅ Cookie consent banner shown on first visit, remembered via localStorage, and respected by `AdSlot` (requests non-personalized ads if declined) (`src/components/CookieConsent.jsx`)
+- ✅ `robots.txt` allowing crawlers, linking to `sitemap.xml`
+- ✅ Original, substantial content: 10 blog articles, business tips, 45 working tools — no lorem ipsum or "under construction" pages
+- ✅ Clear navigation, no broken links, no duplicate/thin content
+- ✅ Mobile-responsive layout throughout, including a fully accessible hamburger menu (see section 11 below)
+- ✅ `netlify.toml` + `public/_redirects` so the SPA deploys and routes correctly on Netlify with no 404s on refresh/deep links
+
+**You still need to do:**
+1. Deploy the site to your real domain and make sure it's publicly reachable (AdSense/Search Console cannot verify `localhost` or a site behind auth).
+2. Update the domain placeholder everywhere it appears:
+   ```bash
+   grep -rl "bizname.example.com" src/ index.html public/ scripts/
+   ```
+   Replace with your real domain in each file (`SEO.jsx` default, `index.html` meta tags, `scripts/generate-sitemap.js` `SITE_URL`, `robots.txt`).
+3. Run `npm run build` (this also regenerates `sitemap.xml` with your real domain) and deploy the `dist/` folder to Netlify.
+4. In Search Console: the verification meta tag is already in `index.html`, so once deployed, click "Verify" on your existing property.
+5. In AdSense: Sites → Add site → enter your domain → verify ownership (the `ads.txt` file above handles this automatically once live).
+6. Keep the site live and unchanged during review — Google typically takes anywhere from a few days to a few weeks.
+7. Once AdSense-approved, create one ad unit per placement (AdSense → Ads → By ad unit → Display ads: Banner, Sidebar, In-content, Sponsored) and paste each real numeric slot ID into the `ADSENSE_SLOTS` object in `src/components/AdSlot.jsx`.
+
+## 11. Responsive / Mobile Checklist
+
+- Every grid-based layout (tool cards, blog cards, templates, calculators, category strips) collapses from multi-column to single-column below 900–1100px via `@media` breakpoints, most centrally in `src/index.css`'s `.bn-grid-*` rules and `src/styles/Calculator.css`'s `.bn-calc-layout` rule.
+- **Hamburger menu** (`src/components/Navbar.jsx` + `src/styles/Navbar.css`): slide-in panel below 960px with a dimmed backdrop, closes on outside click/tap, closes on Escape (returning focus to the toggle button), closes automatically on route change, locks background scroll while open, and uses proper `aria-expanded`/`aria-controls`/`aria-haspopup` attributes. The "Tools" dropdown is purely click-driven (no CSS `:hover` reveal) so it behaves identically on desktop and touch devices.
+- All form inputs/selects/buttons have `min-width: 0; max-width: 100%` globally (`src/index.css`) to prevent the classic CSS-grid overflow bug on narrow phones.
+- Wide tables (invoice/quotation preview, loan amortization schedule, calculator breakdowns) scroll horizontally instead of breaking the layout on small screens.
+- Images/SVGs default to `max-width: 100%; height: auto`; every thumbnail/card image container additionally uses `overflow: hidden` + `object-fit: cover` so real photos crop-to-fill cleanly instead of stretching.
+- Test on real breakpoints before submitting for review: 375px (iPhone SE), 390px (iPhone 12/13/14), 768px (iPad portrait), 1024px (iPad landscape), 1440px (laptop).
+
+## 12. Netlify Deployment
+
+1. Push this repo to GitHub/GitLab/Bitbucket and connect it in Netlify, **or** drag-and-drop the `dist/` folder after running `npm run build` locally.
+2. Netlify auto-detects `netlify.toml` in this repo: build command `npm run build`, publish directory `dist`, and an SPA catch-all redirect (`/* → /index.html`) so deep links and page refreshes never 404.
+3. `public/_redirects` is included as a backup in case `netlify.toml` isn't picked up for any reason — both do the same job.
+4. No environment variables or secrets are required for this build.

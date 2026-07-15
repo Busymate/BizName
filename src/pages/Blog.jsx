@@ -44,7 +44,9 @@ export default function Blog() {
           <div className="bn-grid bn-grid-3">
             {filtered.map((post) => (
               <Link to={`/blog/${post.slug}`} key={post.slug} className="bn-blog-card" data-aos="fade-up">
-                <div className="bn-blog-thumb"><img src={post.image} alt="" /></div>
+                <div className="bn-blog-thumb">
+                  {post.image ? <img src={post.image} alt={post.title} /> : <i className="fa-solid fa-newspaper" />}
+                </div>
                 <span className="bn-article-cat">{post.category}</span>
                 <h4>{post.title}</h4>
                 <p>{post.excerpt}</p>
@@ -59,22 +61,8 @@ export default function Blog() {
           <h4>Popular Posts</h4>
           {popular.map((post) => (
             <Link to={`/blog/${post.slug}`} key={post.slug} className="bn-blog-sidebar-item">
-              <div
-                className="bn-blog-sidebar-thumb"
-                style={{
-                  width: '100%',
-                  aspectRatio: '1 / 1',
-                  maxWidth: '56px',
-                  maxHeight: '56px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                  flexShrink: 0,
-                  borderRadius: '8px',
-                }}
-              >
-                <img src={post.image} alt="" style={{fontSize: '1.1rem'}}/>
+              <div className="bn-blog-sidebar-thumb">
+                {post.image ? <img src={post.image} alt={post.title} /> : <i className="fa-solid fa-newspaper" />}
               </div>
               <div>
                 <p>{post.title}</p>

@@ -49,7 +49,7 @@ export default function BusinessTips() {
       <div className="bn-grid bn-grid-4">
         {filtered.slice(0, 4).map((post) => (
           <Link to={`/blog/${post.slug}`} key={post.slug} className="bn-blog-card" data-aos="fade-up">
-            <div className="bn-blog-thumb"><img src={post.image} alt="" /></div>
+            <div className="bn-blog-thumb">{post.image ? <img src={post.image} alt={post.title} /> : <i className="fa-solid fa-newspaper" />}</div>
             <span className="bn-article-cat">{post.category}</span>
             <h4>{post.title}</h4>
             <p>{post.excerpt}</p>
@@ -73,7 +73,7 @@ export default function BusinessTips() {
       <div className="bn-grid bn-grid-4">
         {filtered.map((post) => (
           <Link to={`/blog/${post.slug}`} key={post.slug} className="bn-blog-card" data-aos="fade-up">
-            <div className="bn-blog-thumb"><img src={post.image} alt="" /></div>
+            <div className="bn-blog-thumb">{post.image ? <img src={post.image} alt={post.title} /> : <i className="fa-solid fa-book-open" />}</div>
             <span className="bn-article-cat">{post.category}</span>
             <h4>{post.title}</h4>
             <p>{post.excerpt}</p>

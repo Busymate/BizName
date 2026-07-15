@@ -61,6 +61,9 @@
   width: 24px;
   height: 24px;
   object-fit: contain;
+}
+
+.bn-tool-card h3 {
   font-size: 1.05rem;
   margin: 0;
 }

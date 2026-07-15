@@ -22,7 +22,9 @@ export default function BlogPost() {
       <h1>{post.title}</h1>
       <span className="bn-article-meta">{post.date} · {post.readTime}</span>
 
-      <div className="bn-blog-post-thumb"><img src={post.image} alt="" /></div>
+      <div className="bn-blog-post-thumb">
+        {post.image ? <img src={post.image} alt={post.title} /> : <i className="fa-solid fa-newspaper" />}
+      </div>
 
       <AdSlot type="in-content" />
 

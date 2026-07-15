@@ -42,6 +42,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -49,6 +51,13 @@ body {
   background: var(--bn-bg);
   color: var(--bn-text);
   transition: background 0.2s ease, color 0.2s ease;
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
 }
 
 .bn-app-shell {
@@ -140,6 +149,17 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin-bottom: 0.4rem;
   color: var(--bn-text);
+}
+
+/* Global safety net: prevents inputs/selects from using their default
+   browser intrinsic min-width, which is a common cause of horizontal
+   overflow inside CSS grid rows on narrow phone screens. */
+input,
+select,
+textarea,
+button {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .bn-input-group input,

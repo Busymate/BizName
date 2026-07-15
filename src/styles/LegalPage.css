@@ -24,3 +24,8 @@
   line-height: 1.75;
   font-size: 0.95rem;
 }
+
+.bn-legal-page a {
+  color: var(--bn-primary);
+  text-decoration: underline;
+}

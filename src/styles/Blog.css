@@ -80,6 +80,13 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
+  overflow: hidden;
+}
+
+.bn-blog-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .bn-blog-card > *:not(.bn-blog-thumb) {
@@ -133,6 +140,13 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.bn-blog-sidebar-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .bn-blog-sidebar-item p {

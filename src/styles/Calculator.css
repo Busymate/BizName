@@ -79,6 +79,9 @@
   border-collapse: collapse;
   font-size: 0.82rem;
   margin-top: 0.75rem;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .bn-calc-table th,

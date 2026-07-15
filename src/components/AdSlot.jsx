@@ -1,44 +1,60 @@
 import { useEffect, useRef } from 'react';
+import { getItem } from '../utils/storage';
 import '../styles/AdSlot.css';
 
-// Fill these in once your AdSense account is approved.
-// Client ID: Account > Settings > Account information.
-// Slot IDs: create one ad unit per placement in Ads > By ad unit, then
-// paste each unit's data-ad-slot value below.
-const ADSENSE_CLIENT = 'ca-pub-XXXXXXXXXXXXXXXX';
+// Your real AdSense publisher ID (already live in index.html's loader script).
+const ADSENSE_CLIENT = 'ca-pub-9529159848617968';
+
+// Fill these in AFTER AdSense approval, once you've created one ad unit
+// per placement (AdSense dashboard > Ads > By ad unit > Display ads).
+// Each unit gives you a numeric data-ad-slot value — paste it below.
+// Leave a value as null until you have the real one; AdSlot will safely
+// fall back to the placeholder box for that spot instead of rendering a
+// broken ad (which is what fake/placeholder slot IDs would do).
 const ADSENSE_SLOTS = {
-  banner: '1111111111',
-  sidebar: '2222222222',
-  'in-content': '3333333333',
-  sponsored: '4444444444',
+  banner: null,
+  sidebar: null,
+  'in-content': null,
+  sponsored: null,
 };
 
-const isAdSenseConfigured = !ADSENSE_CLIENT.includes('XXXX');
+const isClientConfigured = !!ADSENSE_CLIENT && !ADSENSE_CLIENT.includes('XXXX');
 
 /**
  * type: 'banner' | 'sidebar' | 'in-content' | 'sponsored'
  *
- * Renders a real Google AdSense unit once ADSENSE_CLIENT/ADSENSE_SLOTS
- * above are filled in and the loader script in index.html is uncommented.
- * Until then (or if adsbygoogle fails to load, e.g. an ad blocker), it
- * falls back to a visible placeholder so the layout never breaks.
+ * Renders a real Google AdSense unit only once BOTH the client ID and
+ * that specific placement's slot ID are filled in above. Until a slot ID
+ * is set, it renders the visible placeholder box instead — this avoids
+ * ever shipping a broken/blank `<ins>` tag with a fake slot ID, which
+ * would show as an ad error to visitors (and to an AdSense reviewer).
+ *
+ * Respects the choice made in <CookieConsent>: if the visitor declined
+ * personalization, ads are requested as non-personalized.
  */
 export default function AdSlot({ type = 'banner', label = 'Advertisement' }) {
   const insRef = useRef(null);
   const pushed = useRef(false);
+  const slot = ADSENSE_SLOTS[type];
+  const isReady = isClientConfigured && !!slot;
 
   useEffect(() => {
-    if (!isAdSenseConfigured || pushed.current) return;
+    if (!isReady || pushed.current) return;
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      const consent = getItem('bizname_cookie_consent', null);
+      window.adsbygoogle = window.adsbygoogle || [];
+      if (consent === 'declined') {
+        window.adsbygoogle.requestNonPersonalizedAds = 1;
+      }
+      window.adsbygoogle.push({});
       pushed.current = true;
     } catch {
       // adsbygoogle.js not loaded yet (blocked, offline, or dev mode) —
       // the placeholder below stays visible instead.
     }
-  }, []);
+  }, [isReady]);
 
-  if (!isAdSenseConfigured) {
+  if (!isReady) {
     return (
       <div className={`bn-ad-slot bn-ad-${type}`} aria-label={label}>
         <span className="bn-ad-label">{label}</span>
@@ -52,7 +68,7 @@ export default function AdSlot({ type = 'banner', label = 'Advertisement' }) {
       className={`adsbygoogle bn-ad-${type}`}
       style={{ display: 'block' }}
       data-ad-client={ADSENSE_CLIENT}
-      data-ad-slot={ADSENSE_SLOTS[type]}
+      data-ad-slot={slot}
       data-ad-format="auto"
       data-full-width-responsive="true"
     />
