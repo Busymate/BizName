@@ -197,7 +197,7 @@ this is a fully static site.
 
 Everything below is already in place in this codebase. Before submitting
 your site for review, update your real domain everywhere it currently
-says `bizname.example.com` (see the grep command at the end of this
+says `bizname.com.ng` (see the grep command at the end of this
 section), then go through this list:
 
 **Already included:**
@@ -220,7 +220,7 @@ section), then go through this list:
 1. Deploy the site to your real domain and make sure it's publicly reachable (AdSense/Search Console cannot verify `localhost` or a site behind auth).
 2. Update the domain placeholder everywhere it appears:
    ```bash
-   grep -rl "bizname.example.com" src/ index.html public/ scripts/
+   grep -rl "bizname.com.ng" src/ index.html public/ scripts/
    ```
    Replace with your real domain in each file (`SEO.jsx` default, `index.html` meta tags, `scripts/generate-sitemap.js` `SITE_URL`, `robots.txt`).
 3. Run `npm run build` (this also regenerates `sitemap.xml` with your real domain) and deploy the `dist/` folder to Netlify.

@@ -1,272 +1,272 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bizname.example.com/</loc>
+    <loc>https://bizname.com.ng/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/tools</loc>
+    <loc>https://bizname.com.ng/tools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/templates</loc>
+    <loc>https://bizname.com.ng/templates</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/blog</loc>
+    <loc>https://bizname.com.ng/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/business-tips</loc>
+    <loc>https://bizname.com.ng/business-tips</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/about</loc>
+    <loc>https://bizname.com.ng/about</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/contact</loc>
+    <loc>https://bizname.com.ng/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/privacy-policy</loc>
+    <loc>https://bizname.com.ng/privacy-policy</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/terms-of-service</loc>
+    <loc>https://bizname.com.ng/terms-of-service</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/invoice-generator</loc>
+    <loc>https://bizname.com.ng/invoice-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/receipt-generator</loc>
+    <loc>https://bizname.com.ng/receipt-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/profit-calculator</loc>
+    <loc>https://bizname.com.ng/profit-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/vat-calculator</loc>
+    <loc>https://bizname.com.ng/vat-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/discount-calculator</loc>
+    <loc>https://bizname.com.ng/discount-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/pricing-calculator</loc>
+    <loc>https://bizname.com.ng/pricing-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/break-even-calculator</loc>
+    <loc>https://bizname.com.ng/break-even-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/loan-calculator</loc>
+    <loc>https://bizname.com.ng/loan-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/salary-calculator</loc>
+    <loc>https://bizname.com.ng/salary-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/tax-calculator</loc>
+    <loc>https://bizname.com.ng/tax-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/markup-calculator</loc>
+    <loc>https://bizname.com.ng/markup-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/currency-calculator</loc>
+    <loc>https://bizname.com.ng/currency-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/business-name-generator</loc>
+    <loc>https://bizname.com.ng/business-name-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/slogan-generator</loc>
+    <loc>https://bizname.com.ng/slogan-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/swot-analysis</loc>
+    <loc>https://bizname.com.ng/swot-analysis</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/roi-calculator</loc>
+    <loc>https://bizname.com.ng/roi-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/startup-cost-calculator</loc>
+    <loc>https://bizname.com.ng/startup-cost-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/social-media-post-generator</loc>
+    <loc>https://bizname.com.ng/social-media-post-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/hashtag-generator</loc>
+    <loc>https://bizname.com.ng/hashtag-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/email-template-generator</loc>
+    <loc>https://bizname.com.ng/email-template-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/ad-copy-generator</loc>
+    <loc>https://bizname.com.ng/ad-copy-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/product-description-generator</loc>
+    <loc>https://bizname.com.ng/product-description-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/qr-code-generator</loc>
+    <loc>https://bizname.com.ng/qr-code-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/whatsapp-qr-generator</loc>
+    <loc>https://bizname.com.ng/whatsapp-qr-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/vcard-qr-generator</loc>
+    <loc>https://bizname.com.ng/vcard-qr-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/url-qr-generator</loc>
+    <loc>https://bizname.com.ng/url-qr-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/barcode-generator</loc>
+    <loc>https://bizname.com.ng/barcode-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/shipping-calculator</loc>
+    <loc>https://bizname.com.ng/shipping-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/profit-margin-calculator</loc>
+    <loc>https://bizname.com.ng/profit-margin-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/sales-tax-calculator</loc>
+    <loc>https://bizname.com.ng/sales-tax-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/inventory-calculator</loc>
+    <loc>https://bizname.com.ng/inventory-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/unit-price-calculator</loc>
+    <loc>https://bizname.com.ng/unit-price-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/leave-calculator</loc>
+    <loc>https://bizname.com.ng/leave-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/overtime-calculator</loc>
+    <loc>https://bizname.com.ng/overtime-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/attendance-calculator</loc>
+    <loc>https://bizname.com.ng/attendance-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/gratuity-calculator</loc>
+    <loc>https://bizname.com.ng/gratuity-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/bonus-calculator</loc>
+    <loc>https://bizname.com.ng/bonus-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/unit-converter</loc>
+    <loc>https://bizname.com.ng/unit-converter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/date-calculator</loc>
+    <loc>https://bizname.com.ng/date-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/time-calculator</loc>
+    <loc>https://bizname.com.ng/time-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/fuel-cost-calculator</loc>
+    <loc>https://bizname.com.ng/fuel-cost-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/age-calculator</loc>
+    <loc>https://bizname.com.ng/age-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/quotation-generator</loc>
+    <loc>https://bizname.com.ng/quotation-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/estimate-generator</loc>
+    <loc>https://bizname.com.ng/estimate-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bizname.example.com/delivery-note-generator</loc>
+    <loc>https://bizname.com.ng/delivery-note-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

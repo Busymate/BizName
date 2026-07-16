@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
  */
 export default function SEO({ title, description, path = '', schema }) {
   const fullTitle = title ? `${title} | BizName` : 'BizName — Free Business Tools';
-  const url = `https://bizname.example.com${path}`;
+  const url = `https://bizname.com.ng${path}`;
 
   return (
     <Helmet>
