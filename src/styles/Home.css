@@ -33,23 +33,40 @@
   background: var(--bn-surface);
   border: 1px solid var(--bn-border);
   border-radius: 14px;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  padding: 0.4rem 0.4rem 0.4rem 0;
   max-width: 560px;
   box-shadow: var(--bn-shadow);
 }
 
-.bn-hero-search i {
+.bn-hero-search-field {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 1;
+  min-width: 0;
+  padding-left: 1rem;
+}
+
+.bn-hero-search-field i {
   color: var(--bn-text-secondary);
+  flex-shrink: 0;
 }
 
 .bn-hero-search input {
   flex: 1;
+  min-width: 0;
+  width: 100%;
   border: none;
   outline: none;
   background: transparent;
-  padding: 0.6rem 0;
+  padding: 0.65rem 0;
   font-size: 0.95rem;
   color: var(--bn-text);
+}
+
+.bn-hero-search .bn-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .bn-hero-badges {
@@ -242,14 +259,16 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .bn-hero-search {
     flex-wrap: wrap;
-    padding: 0.75rem;
+    padding: 0.6rem;
+    border-radius: 16px;
   }
-  .bn-hero-search input {
+  .bn-hero-search-field {
     width: 100%;
     flex-basis: 100%;
+    padding-left: 0.5rem;
   }
   .bn-hero-search .bn-btn {
     width: 100%;

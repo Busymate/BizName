@@ -103,26 +103,102 @@
 .bn-saved-list h3 {
   font-size: 1rem;
   margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bn-saved-list h3::before {
+  content: '\f2f6';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--bn-primary);
+  font-size: 0.85rem;
 }
 
 .bn-saved-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--bn-border);
+  gap: 0.75rem;
+  background: var(--bn-bg);
+  border: 1px solid var(--bn-border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
   font-size: 0.88rem;
+  margin-bottom: 0.6rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .bn-saved-row:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.bn-saved-row:hover {
+  border-color: var(--bn-primary);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.bn-saved-row span:first-child {
+  color: var(--bn-text);
+  font-weight: 600;
+}
+
+.bn-saved-row span:nth-child(2) {
+  color: var(--bn-success);
+  font-weight: 700;
+  margin-right: auto;
+  padding-left: 0.75rem;
 }
 
 .bn-saved-row button {
-  background: none;
-  border: none;
-  color: var(--bn-danger);
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  color: var(--bn-text-secondary);
   cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bn-saved-row-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.bn-saved-row button:hover {
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+}
+
+.bn-saved-row button.is-copied {
+  background: #ecfdf5;
+  color: var(--bn-success);
+  border-color: #bbf7d0;
+}
+
+.bn-saved-row-delete:hover {
+  background: #fef2f2 !important;
+  color: var(--bn-danger) !important;
+}
+
+[data-theme='dark'] .bn-saved-row-delete:hover {
+  background: rgba(220, 38, 38, 0.15) !important;
+}
+
+@media (max-width: 480px) {
+  .bn-saved-row {
+    flex-wrap: wrap;
+  }
+  .bn-saved-row span:nth-child(2) {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 960px) {

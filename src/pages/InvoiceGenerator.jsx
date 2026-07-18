@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import Button from '../components/Button';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/InvoiceGenerator.css';
@@ -219,11 +220,13 @@ export default function InvoiceGenerator() {
         <div className="bn-card bn-saved-list">
           <h3>Recent Invoices</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>{e.data.invoiceNumber} — {e.data.client?.name || 'Client'}</span>
-              <span>{e.data.currency}{Number(e.data.total).toLocaleString()}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`${e.data.invoiceNumber} — ${e.data.client?.name || 'Client'}`}
+              value={`${e.data.currency}${Number(e.data.total).toLocaleString()}`}
+              copyText={`Invoice ${e.data.invoiceNumber}\nClient: ${e.data.client?.name || 'Client'}\nTotal: ${e.data.currency}${Number(e.data.total).toLocaleString()}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

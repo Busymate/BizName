@@ -46,13 +46,15 @@ export default function Home() {
             <h1>Free <span className="bn-text-accent">Business</span> Tools</h1>
             <p>Everything small businesses need in one place.</p>
             <form className="bn-hero-search" onSubmit={handleSearch}>
-              <i className="fa-solid fa-magnifying-glass" />
-              <input
-                type="text"
-                placeholder="Search for a tool..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
+              <div className="bn-hero-search-field">
+                <i className="fa-solid fa-magnifying-glass" />
+                <input
+                  type="text"
+                  placeholder="Search for a tool..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
               <Button type="submit" variant="primary">Search</Button>
             </form>
             <div className="bn-hero-badges">

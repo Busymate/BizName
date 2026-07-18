@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import ToolPageShell from './ToolPageShell';
+import SavedRow from './SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/Calculator.css';
 
@@ -85,11 +86,13 @@ export default function GenericCalculatorPage({
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>Saved {new Date(e.savedAt).toLocaleDateString()}</span>
-              <span>{formatValue(e.data.highlightValue)}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`Saved ${new Date(e.savedAt).toLocaleDateString()}`}
+              value={formatValue(e.data.highlightValue)}
+              copyText={`${title}\n${result.highlight.label}: ${formatValue(e.data.highlightValue)}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

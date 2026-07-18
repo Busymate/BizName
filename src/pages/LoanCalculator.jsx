@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/LoanCalculator.css';
 
@@ -110,11 +111,13 @@ export default function LoanCalculator() {
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>Loan {fmt(e.data.loanAmount)}</span>
-              <span>{fmt(e.data.monthlyPayment)}/mo</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`Loan ${fmt(e.data.loanAmount)}`}
+              value={`${fmt(e.data.monthlyPayment)}/mo`}
+              copyText={`${`Loan ${fmt(e.data.loanAmount)}`} — ${`${fmt(e.data.monthlyPayment)}/mo`}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

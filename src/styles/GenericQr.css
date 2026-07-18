@@ -57,3 +57,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+.bn-qr-download-note {
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  color: var(--bn-text-secondary);
+  background: var(--bn-bg);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  line-height: 1.5;
+}

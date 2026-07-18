@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SEO from './SEO';
 import Button from './Button';
 import AdSlot from './AdSlot';
@@ -11,9 +11,9 @@ import '../styles/ToolPageShell.css';
 /**
  * Wraps every tool page with the shared chrome required by the spec:
  * title, description, favorite toggle, save/print/copy/share actions,
- * and a "Recently Used" strip. `getShareText` and `getCopyText` let each
- * tool supply its own result text; `onSave` lets each tool persist its
- * own calculation shape via useSavedCalculations.
+ * and a "Recently Used" strip. `getCopyText` lets each tool supply its
+ * own result text; `onSave` lets each tool persist its own calculation
+ * shape via useSavedCalculations.
  */
 export default function ToolPageShell({
   slug,
@@ -28,18 +28,33 @@ export default function ToolPageShell({
   const { recent, addRecent } = useRecentTools();
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [shareFeedback, setShareFeedback] = useState('');
+  const shareMenuRef = useRef(null);
 
   useEffect(() => {
     addRecent(slug);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
+  useEffect(() => {
+    if (!shareOpen) return;
+    const handleClickOutside = (e) => {
+      if (shareMenuRef.current && !shareMenuRef.current.contains(e.target)) {
+        setShareOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [shareOpen]);
+
   const fav = isFavorite(slug);
+  const resultText = getCopyText ? getCopyText() : `${title} — ${description}`;
+  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   const handleCopy = async () => {
-    const text = getCopyText ? getCopyText() : `${title} — ${description}`;
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(resultText);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -51,20 +66,48 @@ export default function ToolPageShell({
     window.print();
   };
 
-  const handleShare = async () => {
-    const shareData = {
-      title: `${title} | BizName`,
-      text: description,
-      url: window.location.href,
-    };
+  const flashFeedback = (msg) => {
+    setShareFeedback(msg);
+    setTimeout(() => setShareFeedback(''), 2000);
+  };
+
+  // Option 1: share the actual result/outcome (what the tool produced).
+  const handleShareResult = async () => {
+    setShareOpen(false);
+    const shareData = { title: `${title} | BizName`, text: resultText, url: pageUrl };
     if (navigator.share) {
       try {
         await navigator.share(shareData);
       } catch {
-        /* user cancelled share — ignore */
+        /* user cancelled — no error state needed */
       }
     } else {
-      handleCopy();
+      try {
+        await navigator.clipboard.writeText(`${resultText}\n\n${pageUrl}`);
+        flashFeedback('Result copied to clipboard!');
+      } catch {
+        /* clipboard unavailable — silently ignore */
+      }
+    }
+  };
+
+  // Option 2: share just the link to this tool, no result data attached.
+  const handleShareLink = async () => {
+    setShareOpen(false);
+    const shareData = { title: `${title} | BizName`, text: description, url: pageUrl };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch {
+        /* user cancelled — no error state needed */
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(pageUrl);
+        flashFeedback('Link copied to clipboard!');
+      } catch {
+        /* clipboard unavailable — silently ignore */
+      }
     }
   };
 
@@ -126,7 +169,30 @@ export default function ToolPageShell({
         <Button variant="outline" icon="fa-copy" onClick={handleCopy}>
           {copied ? 'Copied!' : 'Copy'}
         </Button>
-        <Button variant="outline" icon="fa-share-nodes" onClick={handleShare}>Share</Button>
+        <div className="bn-share-menu" ref={shareMenuRef}>
+          <Button variant="outline" icon="fa-share-nodes" onClick={() => setShareOpen((o) => !o)}>
+            Share
+          </Button>
+          {shareOpen && (
+            <div className="bn-share-dropdown">
+              <button type="button" onClick={handleShareResult}>
+                <i className="fa-solid fa-chart-simple" />
+                <span>
+                  <strong>Share Result</strong>
+                  <small>Send this tool's outcome plus a link</small>
+                </span>
+              </button>
+              <button type="button" onClick={handleShareLink}>
+                <i className="fa-solid fa-link" />
+                <span>
+                  <strong>Share Link Only</strong>
+                  <small>Just the page link, no result data</small>
+                </span>
+              </button>
+            </div>
+          )}
+          {shareFeedback && <div className="bn-share-feedback">{shareFeedback}</div>}
+        </div>
       </div>
 
       <AdSlot type="in-content" />

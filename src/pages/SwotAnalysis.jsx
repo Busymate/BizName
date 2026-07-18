@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/SwotAnalysis.css';
 
@@ -37,7 +38,7 @@ export default function SwotAnalysis() {
 
   return (
     <ToolPageShell slug={SLUG} title="SWOT Analysis Tool" description="Analyze your business strengths, weaknesses, opportunities and threats." getCopyText={getCopyText} onSave={handleSave}>
-      <div className="bn-card" style={{ marginBottom: '1.25rem' }}>
+      <div className="bn-card bn-print-hide" style={{ marginBottom: '1.25rem' }}>
         <div className="bn-input-group" style={{ maxWidth: 360 }}>
           <label>Business Name</label>
           <input value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder="Your Business Name" />
@@ -73,11 +74,13 @@ export default function SwotAnalysis() {
         <div className="bn-card bn-saved-list" style={{ marginTop: '1.5rem' }}>
           <h3>Saved Analyses</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>{e.data.businessName || 'Untitled'}</span>
-              <span>{new Date(e.savedAt).toLocaleDateString()}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={e.data.businessName || 'Untitled'}
+              value={new Date(e.savedAt).toLocaleDateString()}
+              copyText={`SWOT Analysis — ${e.data.businessName || 'Business'}\n` + QUADRANTS.map((q) => `${q.label}:\n${(e.data.data[q.key] || []).map((p) => `- ${p}`).join('\n')}`).join('\n\n')}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

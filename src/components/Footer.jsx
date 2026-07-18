@@ -1,8 +1,27 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { KEYS } from '../utils/storage';
 import '../styles/Footer.css';
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const [subscribed, setSubscribed] = useLocalStorage(KEYS.NEWSLETTER_SUBSCRIBED, false);
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    const trimmed = email.trim();
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+    if (!isValidEmail) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    setError('');
+    setSubscribed(true);
+    setEmail('');
+  };
 
   return (
     <footer className="bn-footer">
@@ -14,10 +33,9 @@ export default function Footer() {
           </div>
           <p>Everything small businesses need in one place. 100% free business tools for success.</p>
           <div className="bn-social-links">
-            <a href="#" aria-label="Facebook"><i className="fa-brands fa-facebook-f" /></a>
-            <a href="#" aria-label="Twitter"><i className="fa-brands fa-twitter" /></a>
-            <a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in" /></a>
-            <a href="#" aria-label="YouTube"><i className="fa-brands fa-youtube" /></a>
+            <a href="https://www.instagram.com/bizname_free/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fa-brands fa-instagram" /></a>
+            <a href="https://x.com/bizname_" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i className="fa-brands fa-x-twitter" /></a>
+            <a href="https://www.youtube.com/channel/UCxnF3mZ1PH2rYxCiZwanwrg" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i className="fa-brands fa-youtube" /></a>
           </div>
         </div>
 
@@ -50,10 +68,23 @@ export default function Footer() {
         <div className="bn-footer-col bn-footer-newsletter">
           <h4>Newsletter</h4>
           <p>Get the latest tips and tools straight to your inbox.</p>
-          <form onSubmit={(e) => e.preventDefault()} className="bn-newsletter-form">
-            <input type="email" placeholder="Enter your email" required />
-            <button type="submit">Subscribe</button>
-          </form>
+          {subscribed ? (
+            <div className="bn-newsletter-success">
+              <i className="fa-solid fa-circle-check" /> You're subscribed. Thanks!
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} className="bn-newsletter-form" noValidate>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); if (error) setError(''); }}
+                required
+              />
+              <button type="submit">Subscribe</button>
+            </form>
+          )}
+          {error && <p className="bn-newsletter-error">{error}</p>}
         </div>
       </div>
 

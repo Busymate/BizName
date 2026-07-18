@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import ToolPageShell from './ToolPageShell';
+import SavedRow from './SavedRow';
 import Button from './Button';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/GenericGenerator.css';
@@ -74,11 +75,13 @@ export default function GenericGeneratorPage({ slug, title, description, fields,
         <div className="bn-card bn-saved-list">
           <h3>Saved Results</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>{e.data.results?.[0]}</span>
-              <span>{new Date(e.savedAt).toLocaleDateString()}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={e.data.results?.[0] || 'Saved result'}
+              value={new Date(e.savedAt).toLocaleDateString()}
+              copyText={(e.data.results || []).join('\n')}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

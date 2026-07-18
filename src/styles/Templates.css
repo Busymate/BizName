@@ -81,7 +81,7 @@
 }
 
 .bn-template-thumb {
-  height: 140px;
+  height: 100px;
   background: var(--bn-primary-soft);
   color: var(--bn-primary);
   border-radius: 10px;
@@ -89,13 +89,7 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  overflow: hidden;
-}
-
-.bn-template-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  margin-bottom: 0.5rem;
 }
 
 .bn-template-card h4 {

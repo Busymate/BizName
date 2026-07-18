@@ -62,8 +62,11 @@ export default function Templates() {
               >
                 <i className={`fa-${bookmarked ? 'solid' : 'regular'} fa-star`} />
               </button>
-              <div className="bn-template-thumb">
-                {tpl.image ? <img src={tpl.image} alt={tpl.name} /> : <i className="fa-solid fa-file-lines" />}
+              <div className="bn-template-thumb" style={{ background: 'transparent', height: 'auto' }}>
+                <img
+                  src={tpl.image}
+                  alt=""
+                  style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block', borderRadius: 'inherit',}}/>
               </div>
               <h4>{tpl.name}</h4>
               <p>{tpl.description}</p>

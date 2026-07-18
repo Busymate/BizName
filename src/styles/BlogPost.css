@@ -31,6 +31,17 @@
   font-size: 1.05rem;
   line-height: 1.85;
   color: var(--bn-text);
+  margin: 0 0 1.4rem;
+}
+
+.bn-blog-post-content h2 {
+  font-size: 1.35rem;
+  margin: 2.25rem 0 0.9rem;
+  color: var(--bn-text);
+}
+
+.bn-blog-post-content h2:first-child {
+  margin-top: 0;
 }
 
 .bn-back-link {

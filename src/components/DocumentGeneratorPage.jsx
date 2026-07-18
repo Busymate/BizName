@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ToolPageShell from './ToolPageShell';
 import Button from './Button';
+import SavedRow from './SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/InvoiceGenerator.css';
 
@@ -135,11 +136,13 @@ export default function DocumentGeneratorPage({ slug, title, description, docLab
         <div className="bn-card bn-saved-list">
           <h3>Recent {docLabel}s</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>{e.data.docNumber} — {e.data.party?.name || 'Client'}</span>
-              {showPricing && <span>{fmt(e.data.subtotal)}</span>}
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`${e.data.docNumber} — ${e.data.party?.name || 'Client'}`}
+              value={showPricing ? fmt(e.data.subtotal) : ''}
+              copyText={`${docLabel} ${e.data.docNumber}\nFrom: ${e.data.business?.name || ''}\nTo: ${e.data.party?.name || ''}` + (showPricing ? `\nTotal: ${fmt(e.data.subtotal)}` : '')}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

@@ -69,6 +69,84 @@
   margin: 2rem 0 0.5rem;
 }
 
+.bn-share-menu {
+  position: relative;
+}
+
+.bn-share-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  z-index: 20;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.14);
+  padding: 0.5rem;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.bn-share-dropdown button {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 0.7rem;
+  cursor: pointer;
+  color: var(--bn-text);
+}
+
+.bn-share-dropdown button:hover {
+  background: var(--bn-bg);
+}
+
+.bn-share-dropdown button i {
+  color: var(--bn-primary);
+  margin-top: 0.2rem;
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.bn-share-dropdown button span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.bn-share-dropdown button strong {
+  font-size: 0.88rem;
+}
+
+.bn-share-dropdown button small {
+  font-size: 0.76rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-share-feedback {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: var(--bn-text);
+  color: var(--bn-bg);
+  font-size: 0.8rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+@media (max-width: 480px) {
+  .bn-share-dropdown {
+    min-width: 220px;
+  }
+}
+
 .bn-recent-tools h3 {
   font-size: 1.05rem;
   margin-bottom: 0.85rem;
@@ -105,8 +183,39 @@
   .bn-recent-tools,
   .bn-ad-slot,
   .bn-tool-fav-lg,
-  .bn-breadcrumb {
+  .bn-breadcrumb,
+  .bn-saved-list,
+  .bn-cookie-banner,
+  /* Input/form sections across every tool type — only the
+     result/preview/output side should ever reach the printed page. */
+  .bn-calc-form,
+  .bn-invoice-form,
+  .bn-gen-form,
+  .bn-qr-form,
+  .bn-swot-add,
+  .bn-print-hide {
     display: none !important;
+  }
+
+  /* Calculator layout: collapse to single column since the form side
+     is now hidden, so the results don't awkwardly sit in a half-width
+     column with empty space next to them. */
+  .bn-calc-layout,
+  .bn-invoice-layout,
+  .bn-gen-layout,
+  .bn-qr-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Startup Cost Calculator: hide only the first (input) card, keep
+     the summary card — targeted via position since it shares a class
+     with the results card. */
+  .bn-startup-layout > .bn-card:first-child {
+    display: none !important;
+  }
+
+  .bn-tool-page {
+    padding-top: 0.5rem;
   }
 }
 

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/DiscountCalculator.css';
 
@@ -77,11 +78,13 @@ export default function DiscountCalculator() {
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>{fmt(e.data.originalPrice)} → {fmt(e.data.finalPrice)}</span>
-              <span>Saved {fmt(e.data.discountAmount)}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`${fmt(e.data.originalPrice)} → ${fmt(e.data.finalPrice)}`}
+              value={`Saved ${fmt(e.data.discountAmount)}`}
+              copyText={`${`${fmt(e.data.originalPrice)} → ${fmt(e.data.finalPrice)}`} — ${`Saved ${fmt(e.data.discountAmount)}`}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

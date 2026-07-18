@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/ProfitCalculator.css';
 
@@ -84,11 +85,13 @@ export default function ProfitCalculator() {
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>Revenue {fmt(e.data.revenue)}</span>
-              <span>Net {fmt(e.data.netProfit)}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`Revenue ${fmt(e.data.revenue)}`}
+              value={`Net ${fmt(e.data.netProfit)}`}
+              copyText={`${`Revenue ${fmt(e.data.revenue)}`} — ${`Net ${fmt(e.data.netProfit)}`}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

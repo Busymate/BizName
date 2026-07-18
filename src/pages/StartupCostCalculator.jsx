@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import Button from '../components/Button';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/StartupCostCalculator.css';
@@ -66,11 +67,13 @@ export default function StartupCostCalculator() {
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>Saved {new Date(e.savedAt).toLocaleDateString()}</span>
-              <span>{fmt(e.data.total)}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`Saved ${new Date(e.savedAt).toLocaleDateString()}`}
+              value={fmt(e.data.total)}
+              copyText={`Startup Cost Calculator\nTotal Estimated Cost: ${fmt(e.data.total)}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

@@ -7,6 +7,7 @@ const KEYS = {
   DARK_MODE: 'bizname_dark_mode',
   SAVED_CALCULATIONS: 'bizname_saved_calculations',
   BOOKMARKED_TEMPLATES: 'bizname_bookmarked_templates',
+  NEWSLETTER_SUBSCRIBED: 'bizname_newsletter_subscribed',
 };
 
 export function getItem(key, fallback) {

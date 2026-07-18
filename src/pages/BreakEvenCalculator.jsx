@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/BreakEvenCalculator.css';
 
@@ -82,11 +83,13 @@ export default function BreakEvenCalculator() {
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>Break-even {e.data.breakEvenUnits} units</span>
-              <span>{fmt(e.data.breakEvenSales)}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`Break-even ${e.data.breakEvenUnits} units`}
+              value={fmt(e.data.breakEvenSales)}
+              copyText={`${`Break-even ${e.data.breakEvenUnits} units`} — ${fmt(e.data.breakEvenSales)}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

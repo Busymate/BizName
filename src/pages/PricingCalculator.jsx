@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import '../styles/PricingCalculator.css';
 
@@ -104,11 +105,13 @@ export default function PricingCalculator() {
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>Cost {fmt(e.data.cost)}</span>
-              <span>Price {fmt(e.data.sellingPrice)}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`Cost ${fmt(e.data.cost)}`}
+              value={`Price ${fmt(e.data.sellingPrice)}`}
+              copyText={`${`Cost ${fmt(e.data.cost)}`} — ${`Price ${fmt(e.data.sellingPrice)}`}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

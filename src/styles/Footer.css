@@ -95,6 +95,28 @@
   white-space: nowrap;
 }
 
+.bn-newsletter-form button:hover {
+  background: var(--bn-primary-dark);
+}
+
+.bn-newsletter-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(22, 163, 74, 0.15);
+  color: #4ade80;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.bn-newsletter-error {
+  color: #fca5a5;
+  font-size: 0.78rem;
+  margin: 0.5rem 0 0;
+}
+
 .bn-footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1.25rem 1.5rem;

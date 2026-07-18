@@ -48,7 +48,7 @@ export default function Contact() {
               </div>
               <div className="bn-input-group">
                 <label>Email Address</label>
-                <input type="email" required placeholder="john@example.com" />
+                <input type="email" required placeholder="john@bizname.com" />
               </div>
               <div className="bn-input-group">
                 <label>Message</label>

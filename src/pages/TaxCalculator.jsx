@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ToolPageShell from '../components/ToolPageShell';
+import SavedRow from '../components/SavedRow';
 import useSavedCalculations from '../hooks/useSavedCalculations';
 import { calculatePAYE } from '../utils/taxEngine';
 import '../styles/TaxCalculator.css';
@@ -102,11 +103,13 @@ export default function TaxCalculator() {
         <div className="bn-card bn-saved-list">
           <h3>Saved Calculations</h3>
           {entries.map((e) => (
-            <div key={e.id} className="bn-saved-row">
-              <span>Income {fmt(e.data.annualIncome)}</span>
-              <span>Tax {fmt(e.data.totalTax)}</span>
-              <button onClick={() => remove(e.id)} aria-label="Delete"><i className="fa-solid fa-trash" /></button>
-            </div>
+            <SavedRow
+              key={e.id}
+              label={`Income ${fmt(e.data.annualIncome)}`}
+              value={`Tax ${fmt(e.data.totalTax)}`}
+              copyText={`${`Income ${fmt(e.data.annualIncome)}`} — ${`Tax ${fmt(e.data.totalTax)}`}`}
+              onDelete={() => remove(e.id)}
+            />
           ))}
         </div>
       )}

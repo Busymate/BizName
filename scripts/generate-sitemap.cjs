@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = "https://bizname.com.ng";
+const SITE_URL = 'https://bizname.com.ng';
 
 const staticRoutes = [
   '/', '/tools', '/templates', '/blog', '/business-tips', '/about',
