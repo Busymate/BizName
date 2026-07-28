@@ -32,6 +32,8 @@ export default function Blog() {
         </div>
       </div>
 
+      <AdSlot type="banner" label="Advertisement" />
+
       <div className="bn-blog-categories">
         <button className={category === 'All' ? 'active' : ''} onClick={() => setCategory('All')}>All Categories</button>
         {blogCategories.map((c) => (
@@ -70,7 +72,6 @@ export default function Blog() {
               </div>
             </Link>
           ))}
-          <AdSlot type="sidebar" />
         </aside>
       </div>
     </div>

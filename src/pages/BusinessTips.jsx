@@ -1,10 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Button from '../components/Button';
+import AdSlot from '../components/AdSlot';
 import blogPosts, { blogCategories } from '../data/blogPosts';
+import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabaseClient';
+import { askAI } from '../lib/ai';
 import '../styles/BusinessTips.css';
 
-const QUICK_TIPS = [
+// Fallback only — shown if there's no AI-generated tip yet (e.g. nobody's
+// triggered generation, or the AI provider is temporarily unavailable).
+const FALLBACK_TIPS = [
   { icon: 'chart-line', title: 'Track Your Expenses Regularly', text: 'Know where your money goes every month.' },
   { icon: 'people-group', title: 'Know Your Customers', text: 'Understand their needs and solve their problems.' },
   { icon: 'tag', title: "Don't Compete on Price Alone", text: 'Focus on value, quality and experience.' },
@@ -16,6 +23,50 @@ const QUICK_TIPS = [
 export default function BusinessTips() {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
+  const { session } = useAuth();
+  const [aiTips, setAiTips] = useState([]);
+  const [tipsLoading, setTipsLoading] = useState(true);
+  const [generating, setGenerating] = useState(false);
+  const [generateError, setGenerateError] = useState('');
+
+  const loadTips = async () => {
+    setTipsLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('business_tips')
+        .select('*')
+        .is('user_id', null)
+        .order('created_at', { ascending: false })
+        .limit(6);
+      if (error) throw error;
+      setAiTips(data || []);
+    } catch {
+      setAiTips([]);
+    } finally {
+      setTipsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadTips();
+  }, []);
+
+  const generateTip = async () => {
+    if (!session) {
+      setGenerateError('Log in (free) to generate a fresh AI tip.');
+      return;
+    }
+    setGenerating(true);
+    setGenerateError('');
+    try {
+      await askAI({ feature: 'business_tips', context: { personalized: false } });
+      await loadTips();
+    } catch (err) {
+      setGenerateError(err.message || 'Could not generate a tip right now — showing existing tips.');
+    } finally {
+      setGenerating(false);
+    }
+  };
 
   const filtered = useMemo(() => {
     return blogPosts.filter((p) => {
@@ -38,6 +89,8 @@ export default function BusinessTips() {
         </div>
       </div>
 
+      <AdSlot type="banner" label="Advertisement" />
+
       <div className="bn-blog-categories">
         <button className={category === 'All' ? 'active' : ''} onClick={() => setCategory('All')}>All Categories</button>
         {blogCategories.map((c) => (
@@ -58,15 +111,33 @@ export default function BusinessTips() {
         ))}
       </div>
 
-      <h2 className="bn-tips-subhead">Quick Tips (Short Reads)</h2>
+      <div className="bn-tips-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+        <h2 style={{ margin: 0 }}><i className="fa-solid fa-wand-magic-sparkles" /> AI Business Tips</h2>
+        <Button variant="outline" size="sm" icon="fa-arrows-rotate" onClick={generateTip} disabled={generating}>
+          {generating ? 'Generating…' : 'Generate New Tip'}
+        </Button>
+      </div>
+      {generateError && <p className="bn-newsletter-error">{generateError}</p>}
       <div className="bn-grid bn-grid-3">
-        {QUICK_TIPS.map((tip) => (
-          <div className="bn-quick-tip" key={tip.title} data-aos="fade-up">
-            <i className={`fa-solid fa-${tip.icon}`} />
-            <h4>{tip.title}</h4>
-            <p>{tip.text}</p>
-          </div>
-        ))}
+        {tipsLoading ? (
+          <p>Loading tips…</p>
+        ) : aiTips.length > 0 ? (
+          aiTips.map((tip) => (
+            <div className="bn-quick-tip" key={tip.id} data-aos="fade-up">
+              <i className="fa-solid fa-wand-magic-sparkles" />
+              <h4>{tip.title}</h4>
+              <p>{tip.content}</p>
+            </div>
+          ))
+        ) : (
+          FALLBACK_TIPS.map((tip) => (
+            <div className="bn-quick-tip" key={tip.title} data-aos="fade-up">
+              <i className={`fa-solid fa-${tip.icon}`} />
+              <h4>{tip.title}</h4>
+              <p>{tip.text}</p>
+            </div>
+          ))
+        )}
       </div>
 
       <h2 className="bn-tips-subhead">All Guides</h2>

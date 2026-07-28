@@ -1,25 +1,29 @@
 import { Link } from 'react-router-dom';
-import useFavorites from '../hooks/useFavorites';
+import useFavoriteTools from '../hooks/useFavoriteTools';
 import '../styles/ToolCard.css';
 
 export default function ToolCard({ tool, badge }) {
-  const { isFavorite, toggleFavorite } = useFavorites();
-  const fav = isFavorite(tool.slug);
   const iconPrefix = tool.iconPrefix || 'fa-solid';
+  const { isFavorite, toggleFavorite } = useFavoriteTools();
+  const favorited = isFavorite(tool.slug);
 
   return (
     <div className="bn-tool-card" data-aos="fade-up">
-      {badge && <span className="bn-tool-badge">{badge}</span>}
+      {badge && (
+        <span className={`bn-tool-badge bn-tool-badge-${badge.toLowerCase().replace(/\s+/g, '-')}`}>
+          {badge}
+        </span>
+      )}
+
       <button
-        className={`bn-tool-fav ${fav ? 'is-fav' : ''}`}
-        onClick={(e) => {
-          e.preventDefault();
-          toggleFavorite(tool.slug);
-        }}
-        aria-label="Toggle favorite"
         type="button"
+        className={`bn-tool-fav ${favorited ? 'is-fav' : ''}`}
+        onClick={(e) => { e.preventDefault(); toggleFavorite(tool.slug); }}
+        aria-pressed={favorited}
+        aria-label={favorited ? `Remove ${tool.name} from favorites` : `Add ${tool.name} to favorites`}
+        title={favorited ? 'Remove from favorites' : 'Add to favorites'}
       >
-        <i className={`fa-${fav ? 'solid' : 'regular'} fa-star`} />
+        <i className={`fa-${favorited ? 'solid' : 'regular'} fa-star`} />
       </button>
 
       <div className="bn-tool-icon">

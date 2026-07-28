@@ -13,7 +13,10 @@ import '../styles/Calculator.css';
  *
  * fields: [{ key, label, type: 'number'|'select'|'text', default, options?, suffix? }]
  * compute(values): => { highlight: { label, value }, rows: [{label, value}], note? }
- * formatValue(n): optional custom formatter, defaults to plain number
+ * formatValue(n): optional custom formatter, defaults to plain number.
+ *   If a row's value is already a string (e.g. '10%'), it's passed through
+ *   as-is rather than coerced through Number() — coercing "10%" produces
+ *   NaN, which is why percentage/unit rows used to render as "₦NaN".
  */
 export default function GenericCalculatorPage({
   slug,
@@ -21,7 +24,8 @@ export default function GenericCalculatorPage({
   description,
   fields,
   compute,
-  formatValue = (n) => Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 }),
+  formatValue = (n) =>
+    typeof n === 'string' ? n : Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 }),
   noteContent,
 }) {
   const initial = Object.fromEntries(fields.map((f) => [f.key, f.default]));
@@ -39,7 +43,7 @@ export default function GenericCalculatorPage({
   const handleSave = () => save({ ...values, highlightValue: result.highlight.value });
 
   return (
-    <ToolPageShell slug={slug} title={title} description={description} getCopyText={getCopyText} onSave={handleSave}>
+    <ToolPageShell slug={slug} title={title} description={description} getCopyText={getCopyText} onSave={handleSave} resultSelector=".bn-calc-results">
       <div className="bn-calc-layout">
         <div className="bn-calc-form bn-card">
           <h3>Enter Details</h3>

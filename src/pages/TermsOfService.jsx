@@ -1,4 +1,5 @@
 import SEO from '../components/SEO';
+import AdSlot from '../components/AdSlot';
 import '../styles/LegalPage.css';
 
 export default function TermsOfService() {
@@ -7,6 +8,8 @@ export default function TermsOfService() {
       <SEO title="Terms of Service" description="Read the terms of service for using BizName's free business tools and templates." path="/terms-of-service" />
       <h1>Terms of Service</h1>
       <p className="bn-legal-updated">Last updated: January 2026</p>
+
+      <AdSlot type="banner" label="Advertisement" />
 
       <h2>1. Acceptance of Terms</h2>
       <p>By accessing or using BizName, you agree to be bound by these Terms of Service. If you do not agree, please do not use this site.</p>
@@ -18,7 +21,7 @@ export default function TermsOfService() {
       <p>BizName is provided "as is" without warranties of any kind, express or implied. We do not guarantee the accuracy, completeness, or reliability of any tool, calculation, template, or article on this site.</p>
 
       <h2>4. Local Data Storage</h2>
-      <p>Because BizName stores data only in your browser's local storage, you are responsible for backing up any information you wish to keep. We are not liable for data loss resulting from clearing browser storage, using a different device, or browser issues.</p>
+      <p>Your account data — invoices, receipts, customers, saved items, and referral history — is stored securely in our backend and protected by account-level access controls. Only your device's theme preference, recently-used tools list, and similar display settings are kept in your browser's local storage. We recommend keeping your login credentials secure, as you are responsible for activity on your account.</p>
 
       <h2>5. Limitation of Liability</h2>
       <p>In no event shall BizName or its creators be liable for any indirect, incidental, or consequential damages arising from your use of this site or its tools.</p>

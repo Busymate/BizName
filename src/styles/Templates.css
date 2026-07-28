@@ -24,6 +24,14 @@
   margin-bottom: 1.5rem;
 }
 
+/* Visible focus indicator for the search input inside — the input
+   itself has outline:none (see below) since a default ring looks
+   clipped inside this rounded pill; this is the real indicator. */
+.bn-templates-search:focus-within {
+  border-color: var(--bn-primary);
+  box-shadow: 0 0 0 3px var(--bn-primary-soft);
+}
+
 .bn-templates-search input {
   flex: 1;
   border: none;
@@ -80,16 +88,15 @@
   color: #f59e0b;
 }
 
-.bn-template-thumb {
+.bn-template-icon-block {
   height: 100px;
-  background: var(--bn-primary-soft);
-  color: var(--bn-primary);
+  background: color-mix(in srgb, var(--tpl-color, var(--bn-primary)) 12%, var(--bn-surface));
+  color: var(--tpl-color, var(--bn-primary));
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.1rem;
 }
 
 .bn-template-card h4 {
@@ -118,4 +125,35 @@
   padding: 0.15rem 0.5rem;
   border-radius: 6px;
   color: var(--bn-text-secondary);
+}
+
+/* ----- Responsive (this file previously had zero mobile-specific rules —
+   it relied entirely on the global grid collapsing at 768px, which worked
+   but left the header/search/filters untuned on small screens) ----- */
+@media (max-width: 600px) {
+  .bn-templates-page {
+    padding: var(--bn-space-5) var(--bn-space-4) var(--bn-space-6);
+  }
+
+  .bn-templates-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .bn-templates-search {
+    padding: var(--bn-space-3) var(--bn-space-4);
+  }
+
+  .bn-template-filters {
+    gap: var(--bn-space-2);
+    margin-bottom: var(--bn-space-5);
+  }
+
+  .bn-template-filters button {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .bn-template-card {
+    padding: var(--bn-space-4);
+  }
 }

@@ -31,6 +31,30 @@
   flex-wrap: wrap;
 }
 
+.bn-tool-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.bn-tool-header-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--bn-primary-light, rgba(37, 99, 235, 0.1));
+  color: var(--bn-primary);
+  font-size: 1.35rem;
+}
+
+.bn-tool-header-icon img {
+  width: 26px;
+  height: 26px;
+}
+
 .bn-tool-header h1 {
   font-size: 2rem;
   margin: 0 0 0.4rem;
@@ -39,7 +63,66 @@
 .bn-tool-header p {
   color: var(--bn-text-secondary);
   max-width: 640px;
+  margin: 0 0 0.75rem;
+}
+
+.bn-tool-header-meta {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.bn-tool-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.78rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-tool-meta-badge i {
+  color: var(--bn-primary);
+}
+
+.bn-how-it-works {
+  margin-bottom: 1.75rem;
+}
+
+.bn-how-it-works h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.85rem;
+}
+
+.bn-how-it-works ol {
   margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--bn-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.bn-related-tools,
+.bn-tool-faq {
+  margin: 2.5rem 0;
+}
+
+.bn-related-tools h3,
+.bn-tool-faq h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.bn-related-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
 }
 
 .bn-tool-fav-lg {
@@ -186,6 +269,10 @@
   .bn-breadcrumb,
   .bn-saved-list,
   .bn-cookie-banner,
+  .bn-how-it-works,
+  .bn-related-tools,
+  .bn-tool-faq,
+  .bn-tool-header-meta,
   /* Input/form sections across every tool type — only the
      result/preview/output side should ever reach the printed page. */
   .bn-calc-form,

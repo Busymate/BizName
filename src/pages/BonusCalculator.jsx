@@ -10,13 +10,13 @@ export default function BonusCalculator() {
         { key: 'salary', label: 'Annual Salary (₦)', default: 4000000 },
         { key: 'bonusPct', label: 'Bonus Percentage (%)', default: 10 },
       ]}
-      formatValue={(n) => `₦${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
       compute={({ salary, bonusPct }) => {
         const bonus = (Number(salary || 0) * Number(bonusPct || 0)) / 100;
+        const naira = (n) => `₦${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
         return {
-          highlight: { label: 'Bonus Amount', value: bonus },
+          highlight: { label: 'Bonus Amount', value: naira(bonus) },
           rows: [
-            { label: 'Annual Salary', value: Number(salary || 0) },
+            { label: 'Annual Salary', value: naira(salary) },
             { label: 'Bonus Percentage', value: `${bonusPct}%` },
           ],
         };

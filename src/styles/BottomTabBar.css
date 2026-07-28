@@ -1,0 +1,82 @@
+.bn-bottom-tabs {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .bn-bottom-tabs {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 80;
+    background: var(--bn-surface);
+    border-top: 1px solid var(--bn-border);
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.08);
+    padding: 0.4rem 0.15rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
+    justify-content: space-around;
+    align-items: stretch;
+  }
+
+  .bn-bottom-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    flex: 1;
+    min-width: 0;
+    text-decoration: none;
+    color: var(--bn-text-secondary);
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 0.4rem 0.15rem;
+    border-radius: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+  }
+
+  .bn-bottom-tab span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .bn-bottom-tab i {
+    font-size: 1.05rem;
+    transition: transform 0.15s ease;
+  }
+
+  .bn-bottom-tab.is-active {
+    color: var(--bn-primary);
+  }
+
+  .bn-bottom-tab.is-active i {
+    transform: translateY(-2px);
+  }
+
+  .bn-bottom-tab:active {
+    transform: scale(0.94);
+  }
+
+  /* Content needs room so the fixed bar never overlaps the last bit of
+     scrollable content — this is the "never float above content" part. */
+  .bn-app-content {
+    padding-bottom: calc(1.75rem + 58px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  body .bn-assistant-page {
+    /* AI Assistant already manages its own internal scroll region; give
+       it room above the tab bar instead of double-padding its content.
+       Higher specificity than AIAssistant.css's own media rule so this
+       wins regardless of stylesheet load order. */
+    height: calc(100vh - var(--bn-navbar-h) - 2rem - 58px - env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+[data-theme='dark'] .bn-bottom-tabs {
+  background: #0b1220;
+}

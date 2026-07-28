@@ -11,14 +11,14 @@ export default function GratuityCalculator() {
         { key: 'yearsOfService', label: 'Years of Service', default: 5 },
         { key: 'daysPerYear', label: 'Gratuity Days per Year', default: 15 },
       ]}
-      formatValue={(n) => `₦${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
       compute={({ lastSalary, yearsOfService, daysPerYear }) => {
         const dailyRate = Number(lastSalary || 0) / 26;
         const gratuity = dailyRate * Number(daysPerYear || 0) * Number(yearsOfService || 0);
+        const naira = (n) => `₦${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
         return {
-          highlight: { label: 'Gratuity Amount', value: gratuity },
+          highlight: { label: 'Gratuity Amount', value: naira(gratuity) },
           rows: [
-            { label: 'Daily Rate', value: dailyRate },
+            { label: 'Daily Rate', value: naira(dailyRate) },
             { label: 'Years of Service', value: Number(yearsOfService || 0) },
           ],
         };

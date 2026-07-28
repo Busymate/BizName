@@ -1,19 +1,23 @@
 .bn-hero {
   background: linear-gradient(180deg, var(--bn-primary-soft) 0%, transparent 100%);
-  padding: 4rem 0 2rem;
+  /* Slightly more breathing room above and below the hero than a
+     standard section, since it's the first thing visitors see. */
+  padding: calc(var(--bn-space-8) + var(--bn-space-3)) 0 calc(var(--bn-space-7) + var(--bn-space-4));
 }
 
 .bn-hero-inner {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  gap: 2rem;
+  gap: var(--bn-space-6);
 }
 
 .bn-hero-text h1 {
-  font-size: 3rem;
-  line-height: 1.1;
-  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.15;
+  margin: 0 0 var(--bn-space-3);
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 .bn-text-accent {
@@ -23,19 +27,46 @@
 .bn-hero-text > p {
   color: var(--bn-text-secondary);
   font-size: 1.1rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: var(--bn-space-5);
+  text-wrap: balance;
+}
+
+.bn-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bn-space-3);
+  margin-bottom: var(--bn-space-5);
+}
+
+/* The primary CTA gets a real shadow + slightly larger footprint than a
+   default lg button so it reads as the one clear next step, with the
+   search bar and secondary CTA clearly supporting it rather than
+   competing with it. */
+.bn-hero-cta-primary {
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.32);
+}
+
+.bn-hero-cta-primary:hover {
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4);
 }
 
 .bn-hero-search {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--bn-space-2);
   background: var(--bn-surface);
   border: 1px solid var(--bn-border);
   border-radius: 14px;
   padding: 0.4rem 0.4rem 0.4rem 0;
   max-width: 560px;
+  width: 100%;
   box-shadow: var(--bn-shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bn-hero-search:focus-within {
+  border-color: var(--bn-primary);
+  box-shadow: 0 0 0 4px var(--bn-primary-soft), var(--bn-shadow);
 }
 
 .bn-hero-search-field {
@@ -71,9 +102,9 @@
 
 .bn-hero-badges {
   display: flex;
-  gap: 1.25rem;
+  gap: var(--bn-space-5);
   flex-wrap: wrap;
-  margin-top: 1.5rem;
+  margin-top: var(--bn-space-5);
   font-size: 0.85rem;
   color: var(--bn-text-secondary);
 }
@@ -95,7 +126,10 @@
 
 .bn-hero-visual-card {
   width: 100%;
-  max-width: 340px;
+  /* Scales fluidly with the viewport instead of jumping straight from
+     a fixed 340px to full-width at the 900px breakpoint, so the
+     illustration never looks cramped on tablet-sized screens. */
+  max-width: clamp(240px, 32vw, 380px);
   aspect-ratio: 4 / 3;
   border-radius: 20px;
   background: var(--bn-surface);
@@ -104,16 +138,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: var(--bn-space-5);
   font-size: 2.5rem;
   color: var(--bn-primary);
   overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bn-hero-visual-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
 }
 
 .bn-hero-visual-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.bn-hero-visual-card:hover img {
+  transform: scale(1.04);
 }
 
 .bn-category-strip .bn-category-card {
@@ -123,12 +168,13 @@
   padding: 1.5rem;
   text-decoration: none;
   color: var(--bn-text);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
 .bn-category-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--bn-shadow);
+  border-color: var(--bn-primary);
 }
 
 .bn-category-card i {
@@ -136,6 +182,11 @@
   color: var(--bn-primary);
   margin-bottom: 0.75rem;
   display: block;
+  transition: transform 0.2s ease;
+}
+
+.bn-category-card:hover i {
+  transform: scale(1.1);
 }
 
 .bn-category-card h4 {
@@ -153,12 +204,24 @@
   border-radius: 16px;
   padding: 1.5rem;
   color: var(--bn-text);
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bn-tip-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--bn-shadow);
 }
 
 .bn-tip-card i {
   font-size: 1.4rem;
   margin-bottom: 0.75rem;
   display: block;
+  transition: transform 0.2s ease;
+}
+
+.bn-tip-card:hover i {
+  transform: scale(1.1);
 }
 
 .bn-tip-card h4 {
@@ -254,8 +317,11 @@
   .bn-hero-inner {
     grid-template-columns: 1fr;
   }
-  .bn-hero-text h1 {
-    font-size: 2.2rem;
+  .bn-hero-visual {
+    order: -1;
+  }
+  .bn-hero-visual-card {
+    max-width: min(360px, 60vw);
   }
 }
 
@@ -274,4 +340,284 @@
     width: 100%;
     justify-content: center;
   }
+  .bn-hero-ctas {
+    flex-direction: column;
+  }
+  .bn-hero-ctas .bn-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .bn-hero-visual-card {
+    max-width: 220px;
+  }
+}
+
+/* ----------------------------------------------------------------
+   AI Business Assistant panel
+   ---------------------------------------------------------------- */
+.bn-ai-panel {
+  display: flex;
+  align-items: center;
+  gap: var(--bn-space-6);
+  background: linear-gradient(135deg, var(--bn-primary) 0%, #7c3aed 100%);
+  border-radius: 24px;
+  padding: var(--bn-space-7) var(--bn-space-7);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+.bn-ai-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.18), transparent 60%);
+  pointer-events: none;
+}
+
+.bn-ai-panel-icon {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+}
+
+.bn-ai-panel-text {
+  position: relative;
+  z-index: 1;
+}
+
+.bn-ai-panel-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.5rem;
+}
+
+.bn-ai-panel-text h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.bn-ai-panel-text p {
+  margin: 0 0 var(--bn-space-5);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+.bn-ai-panel .bn-btn-primary {
+  background: #fff;
+  color: var(--bn-primary);
+}
+
+.bn-ai-panel .bn-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 720px) {
+  .bn-ai-panel {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--bn-space-6) var(--bn-space-5);
+  }
+  .bn-ai-panel-text p {
+    max-width: none;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Templates preview cards
+   ---------------------------------------------------------------- */
+.bn-template-card {
+  position: relative;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: var(--bn-radius);
+  box-shadow: var(--bn-shadow);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--bn-text);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.bn-template-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--bn-primary);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
+}
+
+.bn-template-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--bn-success);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.bn-template-thumb {
+  width: 100%;
+  height: 96px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.bn-template-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.bn-template-card p {
+  margin: 0 0 0.75rem;
+  color: var(--bn-text-secondary);
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+.bn-template-formats {
+  font-size: 0.75rem;
+  color: var(--bn-text-secondary);
+  margin-bottom: 0.9rem;
+}
+
+.bn-template-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bn-template-card:hover .bn-template-download {
+  background: var(--bn-primary);
+  color: #fff;
+}
+
+/* ----------------------------------------------------------------
+   Testimonials
+   ---------------------------------------------------------------- */
+.bn-testimonial-scroller {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.bn-testimonial-card {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: var(--bn-radius);
+  padding: 1.75rem 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bn-testimonial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--bn-shadow);
+}
+
+.bn-testimonial-quote-icon {
+  color: var(--bn-primary);
+  opacity: 0.35;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.bn-testimonial-quote {
+  flex: 1;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--bn-text);
+  margin: 0 0 1.25rem;
+}
+
+.bn-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bn-testimonial-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.bn-testimonial-author-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.bn-testimonial-author-text span {
+  color: var(--bn-text-secondary);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1100px) {
+  .bn-testimonial-scroller {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* On mobile, testimonials become a horizontally-snapping carousel
+   instead of a stacked column, so browsing several quotes doesn't
+   mean an extra-long scroll down the page. */
+@media (max-width: 640px) {
+  .bn-testimonial-scroller {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .bn-testimonial-card {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+}
+
+.bn-article-meta-dot {
+  margin: 0 0.15rem;
 }

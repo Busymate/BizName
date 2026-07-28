@@ -157,34 +157,11 @@
   margin-top: 1rem;
 }
 
-.bn-saved-list {
-  margin-top: 1.5rem;
-}
-
-.bn-saved-list h3 {
-  font-size: 1rem;
-  margin: 0 0 1rem;
-}
-
-.bn-saved-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--bn-border);
-  font-size: 0.88rem;
-}
-
-.bn-saved-row:last-child {
-  border-bottom: none;
-}
-
-.bn-saved-row button {
-  background: none;
-  border: none;
-  color: var(--bn-danger);
-  cursor: pointer;
-}
+/* .bn-saved-list / .bn-saved-row styling now lives in SavedRow.css,
+   imported directly by the SavedRow component — see that file for why.
+   (This used to have its own weaker, conflicting copy here — no hover
+   state, no styling for the copy/delete action buttons — that fought
+   with Calculator.css's version depending on which page loaded first.) */
 
 @media (max-width: 960px) {
   .bn-invoice-layout {

@@ -2,11 +2,10 @@
 // these so key names stay consistent and JSON parse errors never crash the UI.
 
 const KEYS = {
-  FAVORITES: 'bizname_favorites',
   RECENT_TOOLS: 'bizname_recent_tools',
+  FAVORITE_TOOLS: 'bizname_favorite_tools',
+  NOTIFICATIONS_SEEN_VERSION: 'bizname_notifications_seen_version',
   DARK_MODE: 'bizname_dark_mode',
-  SAVED_CALCULATIONS: 'bizname_saved_calculations',
-  BOOKMARKED_TEMPLATES: 'bizname_bookmarked_templates',
   NEWSLETTER_SUBSCRIBED: 'bizname_newsletter_subscribed',
 };
 

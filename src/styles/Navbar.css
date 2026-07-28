@@ -5,6 +5,13 @@
   background: var(--bn-surface);
   border-bottom: 1px solid var(--bn-border);
   backdrop-filter: blur(8px);
+  box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.bn-navbar.is-scrolled {
+  border-bottom-color: transparent;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
 }
 
 .bn-navbar-inner {
@@ -13,8 +20,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  min-height: var(--bn-navbar-h);
   padding: 0.75rem 1.5rem;
   gap: 1rem;
+  transition: min-height 0.25s ease, padding 0.25s ease;
+}
+
+.bn-navbar.is-scrolled .bn-navbar-inner {
+  min-height: calc(var(--bn-navbar-h) - 12px);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.bn-navbar.is-scrolled .bn-logo-badge {
+  transform: scale(0.92);
 }
 
 .bn-logo {
@@ -39,12 +59,15 @@
   color: #fff;
   font-weight: 800;
   flex-shrink: 0;
+  transition: transform 0.25s ease;
 }
 
 .bn-nav-links {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 2rem;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .bn-nav-links a {
@@ -52,7 +75,10 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color 0.15s ease;
+  border-radius: 6px;
 }
 
 .bn-nav-links a.active,
@@ -60,12 +86,17 @@
   color: var(--bn-primary);
 }
 
-.bn-nav-mobile-actions {
-  display: none;
+.bn-nav-links a:focus-visible,
+.bn-dropdown-trigger:focus-visible,
+.bn-icon-btn:focus-visible,
+.bn-navbar-cta-btn:focus-visible {
+  outline: 2px solid var(--bn-primary);
+  outline-offset: 2px;
 }
 
 .bn-dropdown {
   position: relative;
+  flex-shrink: 0;
 }
 
 .bn-dropdown-trigger {
@@ -79,6 +110,8 @@
   gap: 0.35rem;
   cursor: pointer;
   padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .bn-dropdown-trigger:hover {
@@ -95,7 +128,6 @@
 }
 
 .bn-dropdown-menu {
-  display: none;
   position: absolute;
   top: 130%;
   left: 0;
@@ -105,22 +137,48 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
   padding: 0.5rem;
   min-width: 220px;
+  display: flex;
   flex-direction: column;
   z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.98);
+  transform-origin: top left;
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0.16s;
 }
 
 .bn-dropdown.is-open .bn-dropdown-menu {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0s;
 }
 
 .bn-dropdown-menu a {
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
   white-space: nowrap;
+  transition: background 0.12s ease, transform 0.12s ease;
+  opacity: 0;
+}
+
+.bn-dropdown.is-open .bn-dropdown-menu a {
+  animation: bn-dropdown-item-in 0.22s ease forwards;
+}
+
+.bn-dropdown.is-open .bn-dropdown-menu a:nth-child(1) { animation-delay: 0.02s; }
+.bn-dropdown.is-open .bn-dropdown-menu a:nth-child(2) { animation-delay: 0.06s; }
+.bn-dropdown.is-open .bn-dropdown-menu a:nth-child(3) { animation-delay: 0.1s; }
+.bn-dropdown.is-open .bn-dropdown-menu a:nth-child(4) { animation-delay: 0.14s; }
+
+@keyframes bn-dropdown-item-in {
+  from { opacity: 0; transform: translateX(-4px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .bn-dropdown-menu a:hover {
   background: var(--bn-bg);
+  transform: translateX(2px);
 }
 
 .bn-navbar-actions {
@@ -149,142 +207,240 @@
   background: var(--bn-bg);
 }
 
-.bn-favorites-btn {
+.bn-navbar-cta-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  border: 1px solid var(--bn-primary);
-  color: var(--bn-primary);
-  background: transparent;
+  border: none;
+  color: #fff;
+  background: var(--bn-primary);
   border-radius: 10px;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.15rem;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, transform 0.1s ease;
   white-space: nowrap;
 }
 
-.bn-favorites-btn:hover {
+.bn-navbar-cta-btn:hover {
+  background: var(--bn-primary-dark);
+  transform: translateY(-1px);
+}
+
+.bn-navbar-cta-outline {
+  background: transparent;
+  color: var(--bn-primary);
+  border: 1.5px solid var(--bn-primary);
+}
+
+.bn-navbar-cta-outline:hover {
   background: var(--bn-primary-soft);
+}
+
+.bn-logo-text-wrap {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.bn-logo-tagline {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--bn-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.bn-navbar-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bn-bg);
+  border: 1px solid var(--bn-border);
+  border-radius: 10px;
+  padding: 0.5rem 0.85rem;
+  width: clamp(160px, 14vw, 240px);
+  flex-shrink: 1;
+  min-width: 0;
+  color: var(--bn-text-secondary);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, width 0.15s ease;
+}
+
+.bn-navbar-search:focus-within {
+  border-color: var(--bn-primary);
+  box-shadow: 0 0 0 3px var(--bn-primary-soft);
+  width: clamp(200px, 18vw, 300px);
+}
+
+.bn-navbar-search input {
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--bn-text);
+  font-size: 0.85rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.bn-navbar-search input::placeholder {
+  color: var(--bn-text-secondary);
+}
+
+.bn-navbar-search kbd {
+  font-size: 0.68rem;
+  color: var(--bn-text-secondary);
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+}
+
+.bn-bell-btn {
+  position: relative;
+}
+
+.bn-account-menu {
+  position: relative;
+}
+
+.bn-account-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 10px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  color: var(--bn-text);
+}
+
+.bn-account-trigger:hover {
+  background: var(--bn-bg);
+}
+
+.bn-account-avatar {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border-radius: 50%;
+  background: var(--bn-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.bn-account-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bn-account-trigger i.fa-chevron-down {
+  font-size: 0.65rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-account-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 0.5rem;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.bn-account-dropdown a,
+.bn-account-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  color: var(--bn-text);
+  font-size: 0.88rem;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+}
+
+.bn-account-dropdown a:hover,
+.bn-account-dropdown button:hover {
+  background: var(--bn-bg);
+}
+
+.bn-account-dropdown button {
+  color: var(--bn-danger);
+}
+
+@media (max-width: 960px) {
+  .bn-navbar-search {
+    display: none;
+  }
+  .bn-account-name {
+    display: none;
+  }
 }
 
 .bn-menu-toggle {
   display: none;
 }
 
-.bn-nav-backdrop {
-  display: none;
+.bn-menu-toggle i {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ----- Mobile hamburger menu ----- */
+.bn-menu-toggle.is-active i {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-menu-toggle i {
+    transition: none;
+  }
+}
+
+/* ----- Mobile: hide the desktop nav, hand off to MobileNav ----- */
 @media (max-width: 960px) {
-  .bn-nav-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.45);
-    z-index: 998;
-    animation: bn-fade-in 0.2s ease;
-  }
-
   .bn-nav-links {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: min(320px, 84vw);
-    z-index: 999;
-    background: var(--bn-surface);
-    flex-direction: column;
-    align-items: stretch;
-    padding: 5rem 1.5rem 2rem;
-    gap: 0.25rem;
-    transform: translateX(100%);
-    transition: transform 0.28s ease;
-    overflow-y: auto;
-    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.15);
-  }
-
-  .bn-nav-links.is-open {
-    transform: translateX(0);
-  }
-
-  .bn-nav-links a {
-    padding: 0.85rem 0.25rem;
-    font-size: 1rem;
-    border-bottom: 1px solid var(--bn-border);
-    width: 100%;
-  }
-
-  .bn-dropdown {
-    border-bottom: 1px solid var(--bn-border);
-  }
-
-  .bn-dropdown-trigger {
-    width: 100%;
-    justify-content: space-between;
-    padding: 0.85rem 0.25rem;
-    font-size: 1rem;
-  }
-
-  .bn-dropdown-menu {
-    position: static;
-    box-shadow: none;
-    border: none;
-    padding: 0 0 0.5rem 0.75rem;
     display: none;
   }
 
-  .bn-dropdown.is-open .bn-dropdown-menu {
-    display: flex;
-  }
-
-  .bn-dropdown-menu a {
-    border-bottom: none;
-    padding: 0.6rem 0.25rem;
-  }
-
-  .bn-nav-mobile-actions {
-    display: block;
-    margin-top: 1rem;
-  }
-
-  .bn-nav-mobile-actions a {
-    display: block;
-    text-align: center;
-    background: var(--bn-primary);
-    color: #fff !important;
-    border-radius: 10px;
-    padding: 0.85rem !important;
-    border-bottom: none !important;
-    font-weight: 600;
-  }
-
-  .bn-favorites-btn span {
+  /* Signed-out CTAs move into the drawer's own auth section on mobile,
+     keeping the sticky top bar to just the logo, quick icon actions,
+     and the hamburger — one clear entry point instead of two. */
+  .bn-navbar-cta-btn {
     display: none;
-  }
-
-  .bn-favorites-btn {
-    padding: 0.5rem 0.65rem;
   }
 
   .bn-menu-toggle {
     display: inline-flex;
     position: relative;
     z-index: 1001;
+    width: 44px;
+    height: 44px;
   }
 }
 
-@keyframes bn-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bn-nav-links,
-  .bn-nav-backdrop {
-    transition: none;
-    animation: none;
+/* Tablet: give the logo/actions row a touch more breathing room before
+   the mobile drawer breakpoint. */
+@media (min-width: 768px) and (max-width: 960px) {
+  .bn-navbar-inner {
+    padding: 0.75rem 2rem;
   }
 }

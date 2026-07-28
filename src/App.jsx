@@ -2,6 +2,9 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import Layout from './components/Layout';
+import PrivateRoute from './components/PrivateRoute';
+import DashboardLayout from './components/DashboardLayout';
+import OfflineScreen from './components/OfflineScreen';
 
 // --- Core pages ---
 const Home = lazy(() => import('./pages/Home'));
@@ -15,6 +18,23 @@ const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+
+// --- New: auth + payments (added, existing pages/routes untouched) ---
+const Login = lazy(() => import('./pages/Login'));
+const Signup = lazy(() => import('./pages/Signup'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const PaymentCallback = lazy(() => import('./pages/PaymentCallback'));
+const SavedItems = lazy(() => import('./pages/SavedItems'));
+const Customers = lazy(() => import('./pages/Customers'));
+const Referrals = lazy(() => import('./pages/Referrals'));
+const Favorites = lazy(() => import('./pages/Favorites'));
+const Analytics = lazy(() => import('./pages/Analytics'));
+const Settings = lazy(() => import('./pages/Settings'));
+const Support = lazy(() => import('./pages/Support'));
+const AIAssistant = lazy(() => import('./pages/AIAssistant'));
+const InvoiceDetails = lazy(() => import('./pages/InvoiceDetails'));
+const WhatsNew = lazy(() => import('./pages/WhatsNew'));
 
 // --- Tool pages: fully implemented ---
 const InvoiceGenerator = lazy(() => import('./pages/InvoiceGenerator'));
@@ -66,10 +86,20 @@ const FuelCostCalculator = lazy(() => import('./pages/FuelCostCalculator'));
 const AgeCalculator = lazy(() => import('./pages/AgeCalculator'));
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    if (hash) {
+      // Give the new page a tick to render before looking for the
+      // element — React Router navigates client-side, so there's no
+      // native browser hash-scroll like a full page load would give us.
+      const id = hash.replace('#', '');
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      return;
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 
@@ -87,8 +117,10 @@ export default function App() {
   }, []);
 
   return (
-    <Layout>
-      <ScrollToTop />
+    <>
+      <OfflineScreen />
+      <Layout>
+        <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -149,9 +181,27 @@ export default function App() {
           <Route path="/fuel-cost-calculator" element={<FuelCostCalculator />} />
           <Route path="/age-calculator" element={<AgeCalculator />} />
 
+          {/* New: auth + payments (additive only) */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/payment/callback" element={<PrivateRoute><PaymentCallback /></PrivateRoute>} />
+          <Route path="/dashboard" element={<PrivateRoute><DashboardLayout><Dashboard /></DashboardLayout></PrivateRoute>} />
+          <Route path="/ai-assistant" element={<PrivateRoute><DashboardLayout><AIAssistant /></DashboardLayout></PrivateRoute>} />
+          <Route path="/invoice/:id" element={<PrivateRoute><DashboardLayout><InvoiceDetails /></DashboardLayout></PrivateRoute>} />
+          <Route path="/whats-new" element={<WhatsNew />} />
+          <Route path="/saved-items" element={<PrivateRoute><DashboardLayout><SavedItems /></DashboardLayout></PrivateRoute>} />
+          <Route path="/customers" element={<PrivateRoute><DashboardLayout><Customers /></DashboardLayout></PrivateRoute>} />
+          <Route path="/referrals" element={<PrivateRoute><DashboardLayout><Referrals /></DashboardLayout></PrivateRoute>} />
+          <Route path="/favorites" element={<PrivateRoute><DashboardLayout><Favorites /></DashboardLayout></PrivateRoute>} />
+          <Route path="/analytics" element={<PrivateRoute><DashboardLayout><Analytics /></DashboardLayout></PrivateRoute>} />
+          <Route path="/settings" element={<PrivateRoute><DashboardLayout><Settings /></DashboardLayout></PrivateRoute>} />
+          <Route path="/support" element={<PrivateRoute><DashboardLayout><Support /></DashboardLayout></PrivateRoute>} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </Layout>
+      </Layout>
+    </>
   );
 }

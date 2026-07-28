@@ -14,7 +14,7 @@
 .bn-ad-banner {
   width: 100%;
   min-height: 90px;
-  margin: 2rem 0;
+  margin: 0;
 }
 
 .bn-ad-sidebar {
@@ -34,4 +34,74 @@
   min-height: 120px;
   margin: 1.5rem 0;
   border-style: solid;
+}
+
+/* ---------------------------------------------------------------------
+   AdSterra native banner (1:1 widget). Wraps the third-party script's
+   injected markup in a square, centered, responsive frame that matches
+   the rest of the UI instead of leaving it to render at whatever size
+   the ad network defaults to.
+   --------------------------------------------------------------------- */
+.bn-ad-slot.bn-ad-native {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  border-style: solid;
+  background: var(--bn-surface);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  padding: 0.85rem 0.85rem 1rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.bn-ad-native-tag {
+  align-self: flex-start;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bn-text-secondary);
+  background: var(--bn-bg);
+  border: 1px solid var(--bn-border);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  line-height: 1.4;
+}
+
+.bn-ad-native-frame {
+  width: min(100%, 336px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: var(--bn-bg);
+  overflow: auto;
+  /* AdSterra injects its own markup/styles into this box; these rules
+     just make sure that content can never push past the square frame
+     or force the page to scroll horizontally. */
+}
+
+.bn-ad-native-frame > * {
+  max-width: 100%;
+}
+
+.bn-ad-native-frame iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: 0;
+}
+
+/* Sidebar/in-content placements have more vertical room, so let the
+   square widget size up a little on larger screens. */
+@media (min-width: 768px) {
+  .bn-ad-sidebar .bn-ad-native-frame,
+  .bn-ad-in-content .bn-ad-native-frame {
+    width: min(100%, 300px);
+  }
+}
+
+@media (max-width: 360px) {
+  .bn-ad-slot.bn-ad-native {
+    padding: 0.65rem 0.65rem 0.8rem;
+  }
 }

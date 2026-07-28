@@ -24,7 +24,7 @@ export default function ReceiptGenerator() {
   const handleSave = () => save({ receiptNumber, receivedFrom, amount, receiptDate });
 
   return (
-    <ToolPageShell slug={SLUG} title="Receipt Generator" description="Create professional receipts in seconds. Download and share easily." getCopyText={getCopyText} onSave={handleSave}>
+    <ToolPageShell slug={SLUG} title="Receipt Generator" description="Create professional receipts in seconds. Download and share easily." getCopyText={getCopyText} onSave={handleSave} resultSelector=".bn-invoice-preview">
       <div className="bn-invoice-layout">
         <div className="bn-invoice-form">
           <div className="bn-card">

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/Button';
+import AdSlot from '../components/AdSlot';
 import '../styles/NotFound.css';
 
 export default function NotFound() {
@@ -14,6 +15,10 @@ export default function NotFound() {
       <div className="bn-notfound-actions">
         <Button as={Link} to="/" variant="primary" icon="fa-house">Go Home</Button>
         <Button as={Link} to="/tools" variant="outline" icon="fa-toolbox">Browse Tools</Button>
+      </div>
+
+      <div style={{ maxWidth: 420, margin: '2rem auto 0' }}>
+        <AdSlot type="banner" label="Advertisement" />
       </div>
     </div>
   );

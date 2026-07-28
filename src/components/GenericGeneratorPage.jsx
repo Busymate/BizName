@@ -29,7 +29,7 @@ export default function GenericGeneratorPage({ slug, title, description, fields,
   const handleSave = () => save({ values, results });
 
   return (
-    <ToolPageShell slug={slug} title={title} description={description} getCopyText={getCopyText} onSave={handleSave}>
+    <ToolPageShell slug={slug} title={title} description={description} getCopyText={getCopyText} onSave={handleSave} resultSelector=".bn-gen-results">
       <div className="bn-gen-layout">
         <div className="bn-gen-form bn-card">
           <h3>Enter Details</h3>

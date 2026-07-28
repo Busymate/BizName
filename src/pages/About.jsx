@@ -1,4 +1,5 @@
 import SEO from '../components/SEO';
+import AdSlot from '../components/AdSlot';
 import '../styles/About.css';
 
 const STATS = [
@@ -21,6 +22,8 @@ export default function About() {
           to help small businesses, freelancers and entrepreneurs save time, cut costs and grow with confidence.
         </p>
       </div>
+
+      <AdSlot type="banner" label="Advertisement" />
 
       <div className="bn-feature-strip" data-aos="fade-up">
         <div className="bn-feature-item">

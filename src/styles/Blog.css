@@ -24,6 +24,14 @@
   margin-bottom: 1.5rem;
 }
 
+/* Visible focus indicator for the search input inside — the input
+   itself has outline:none (see below) since a default ring looks
+   clipped inside this rounded pill; this is the real indicator. */
+.bn-blog-search:focus-within {
+  border-color: var(--bn-primary);
+  box-shadow: 0 0 0 3px var(--bn-primary-soft);
+}
+
 .bn-blog-search input {
   flex: 1;
   border: none;

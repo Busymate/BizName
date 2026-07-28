@@ -1,0 +1,411 @@
+.bn-auth-shell {
+  min-height: calc(100vh - var(--bn-navbar-h));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2.5rem 1.25rem;
+  background: var(--bn-bg);
+}
+
+.bn-auth-card {
+  width: 100%;
+  max-width: 920px;
+  display: flex;
+  background: var(--bn-surface);
+  border-radius: 22px;
+  box-shadow: var(--bn-shadow);
+  border: 1px solid var(--bn-border);
+  overflow: hidden;
+  animation: bn-auth-fade-up 0.5s ease both;
+}
+
+@keyframes bn-auth-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bn-auth-illustration {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 3rem 2.5rem;
+  background: linear-gradient(160deg, var(--bn-primary-soft), var(--bn-bg));
+  text-align: center;
+}
+
+.bn-auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--bn-primary);
+  align-self: flex-start;
+}
+
+.bn-auth-illustration-art {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bn-auth-svg {
+  width: 100%;
+  max-width: 300px;
+}
+
+.bn-auth-illustration-text {
+  max-width: 340px;
+}
+
+.bn-auth-illustration-text h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  color: var(--bn-text);
+}
+
+.bn-auth-illustration-text p {
+  color: var(--bn-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.bn-auth-panel {
+  flex: 1.1;
+  min-width: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2.75rem;
+}
+
+.bn-auth-form-wrap {
+  width: 100%;
+  max-width: 380px;
+}
+
+.bn-auth-form-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+  color: var(--bn-text);
+}
+
+.bn-auth-subtitle {
+  color: var(--bn-text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.bn-auth-form-wrap form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bn-input-icon-group {
+  position: relative;
+}
+
+.bn-input-icon-group > i:first-child {
+  position: absolute;
+  left: 0.95rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--bn-text-secondary);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.bn-input-icon-group input {
+  width: 100%;
+  padding: 0.8rem 2.5rem 0.8rem 2.5rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--bn-border);
+  background: var(--bn-bg);
+  color: var(--bn-text);
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.bn-input-icon-group input:focus {
+  outline: none;
+  border-color: var(--bn-primary);
+  background: var(--bn-surface);
+  box-shadow: 0 0 0 4px var(--bn-primary-soft);
+}
+
+.bn-input-toggle {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--bn-text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+}
+
+.bn-input-toggle:hover {
+  color: var(--bn-primary);
+}
+
+.bn-referral-inline-box {
+  border: 1.5px dashed var(--bn-success);
+  background: rgba(22, 163, 74, 0.06);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+}
+
+.bn-referral-inline-box .bn-input-group {
+  margin-bottom: 0.4rem;
+}
+
+.bn-referral-inline-box input {
+  background: var(--bn-surface);
+}
+
+.bn-referral-inline-box p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--bn-text-secondary);
+  line-height: 1.4;
+}
+
+.bn-auth-submit {
+  margin-top: 0.25rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: none;
+  background: var(--bn-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.bn-auth-submit:hover:not(:disabled) {
+  background: var(--bn-primary-dark);
+  transform: translateY(-1px);
+}
+
+.bn-auth-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bn-auth-row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-top: -0.3rem;
+}
+
+.bn-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--bn-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.bn-checkbox-label input {
+  accent-color: var(--bn-primary);
+  width: 15px;
+  height: 15px;
+}
+
+.bn-auth-inline-link {
+  color: var(--bn-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bn-auth-inline-link:hover {
+  text-decoration: underline;
+}
+
+.bn-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.35rem 0 1.1rem;
+  color: var(--bn-text-secondary);
+  font-size: 0.78rem;
+}
+
+.bn-auth-divider::before,
+.bn-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bn-border);
+}
+
+.bn-auth-oauth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.bn-auth-oauth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.bn-auth-oauth-btn:hover:not(:disabled) {
+  border-color: var(--bn-primary);
+  background: var(--bn-primary-soft);
+}
+
+.bn-auth-oauth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bn-auth-success-box {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: rgba(22, 163, 74, 0.08);
+  border: 1px solid rgba(22, 163, 74, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  color: var(--bn-text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.bn-auth-success-box i {
+  color: var(--bn-success);
+  font-size: 1.2rem;
+  margin-top: 0.1rem;
+}
+
+.bn-auth-footer-link {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-auth-footer-link a {
+  color: var(--bn-primary);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bn-auth-footer-link a:hover {
+  text-decoration: underline;
+}
+
+/* ----- Referral rewards box (below the auth card) ----- */
+.bn-auth-below {
+  width: 100%;
+  max-width: 920px;
+}
+
+.bn-referral-rewards-box {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--bn-shadow);
+}
+
+.bn-referral-rewards-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--bn-warning);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.bn-referral-rewards-box strong {
+  color: var(--bn-text);
+}
+
+.bn-referral-rewards-box p {
+  margin: 0.25rem 0 0;
+  color: var(--bn-text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.bn-referral-rewards-box p strong {
+  color: var(--bn-success);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 900px) {
+  .bn-auth-card {
+    flex-direction: column;
+  }
+  .bn-auth-illustration {
+    min-width: 0;
+    width: 100%;
+    padding: 2.25rem 1.75rem 1.5rem;
+  }
+  .bn-auth-panel {
+    min-width: 0;
+    width: 100%;
+    padding: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bn-auth-shell {
+    padding: 1.5rem 1rem;
+  }
+  .bn-auth-form-title {
+    font-size: 1.4rem;
+  }
+  .bn-auth-oauth-row {
+    grid-template-columns: 1fr;
+  }
+  .bn-referral-rewards-box {
+    flex-direction: column;
+  }
+}
+
+/* Dashboard-specific styles now live in Dashboard.css and BusinessSuite.css
+   (bn-dashboard-card, bn-dashboard-grid, bn-referral-code-box,
+   bn-dashboard-logout, bn-quota-bar-*) so they're available consistently
+   across Dashboard, Referrals, Customers and Saved Items. */

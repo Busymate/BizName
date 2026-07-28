@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import AdSlot from '../components/AdSlot';
 import { getPostBySlug } from '../data/blogPosts';
+import { useAuth } from '../context/AuthContext';
+import { api } from '../lib/api';
 import '../styles/BlogPost.css';
 
 // Parses the lightweight "## Heading" + blank-line-separated paragraphs
@@ -20,6 +23,19 @@ function renderContent(content) {
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
+  const { session } = useAuth();
+
+  // Powers the Dashboard's "Articles Read" counter — this is the one
+  // page both Blog and Business Tips article links land on, so tracking
+  // it here covers reading either. Silently skipped for signed-out
+  // visitors (there's no per-account counter to attribute it to) and
+  // never blocks reading either way — it's a count, not a gate.
+  useEffect(() => {
+    if (!session || !post) return;
+    api.consumeQuota('article_view').catch(() => {
+      /* usage tracking is best-effort — never worth surfacing an error over */
+    });
+  }, [slug, session, post]);
 
   if (!post) return <Navigate to="/404" replace />;
 
@@ -35,17 +51,15 @@ export default function BlogPost() {
       <h1>{post.title}</h1>
       <span className="bn-article-meta">{post.date} · {post.readTime}</span>
 
+      <AdSlot type="banner" label="Advertisement" />
+
       <div className="bn-blog-post-thumb">
         {post.image ? <img src={post.image} alt={post.title} /> : <i className="fa-solid fa-newspaper" />}
       </div>
 
-      <AdSlot type="in-content" />
-
       <div className="bn-blog-post-content">
         {renderContent(post.content)}
       </div>
-
-      <AdSlot type="in-content" />
 
       <Link to="/blog" className="bn-back-link"><i className="fa-solid fa-arrow-left" /> Back to Blog</Link>
     </div>

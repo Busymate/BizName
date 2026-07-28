@@ -2,8 +2,9 @@
   position: relative;
   background: var(--bn-surface);
   border: 1px solid var(--bn-border);
-  border-radius: 16px;
+  border-radius: var(--bn-radius);
   padding: 1.5rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -27,7 +28,12 @@
   padding: 0.2rem 0.55rem;
   border-radius: 6px;
   letter-spacing: 0.03em;
+  z-index: 1;
 }
+
+.bn-tool-badge-popular { background: var(--bn-success); }
+.bn-tool-badge-new { background: var(--bn-primary); }
+.bn-tool-badge-ai { background: #7c3aed; }
 
 .bn-tool-fav {
   position: absolute;

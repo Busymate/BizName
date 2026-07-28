@@ -34,7 +34,7 @@ export default function DocumentGeneratorPage({ slug, title, description, docLab
   const handleSave = () => save({ docNumber, business, party, items, subtotal });
 
   return (
-    <ToolPageShell slug={slug} title={title} description={description} getCopyText={getCopyText} onSave={handleSave}>
+    <ToolPageShell slug={slug} title={title} description={description} getCopyText={getCopyText} onSave={handleSave} resultSelector=".bn-invoice-preview">
       <div className="bn-invoice-layout">
         <div className="bn-invoice-form">
           <div className="bn-card">

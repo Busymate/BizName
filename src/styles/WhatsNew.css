@@ -1,0 +1,38 @@
+.bn-release-card {
+  margin-bottom: 1.25rem;
+}
+
+.bn-release-current {
+  border-color: var(--bn-primary);
+  box-shadow: 0 0 0 1px var(--bn-primary);
+}
+
+.bn-release-head h3 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: var(--bn-text);
+  margin-bottom: 0.2rem;
+}
+
+.bn-release-notes {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bn-release-notes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--bn-text);
+}
+
+.bn-release-notes li i {
+  color: var(--bn-success);
+  margin-top: 0.2rem;
+}

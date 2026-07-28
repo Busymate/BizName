@@ -1,0 +1,39 @@
+.bn-img-skeleton-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.bn-img-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    var(--bn-border) 30%,
+    var(--bn-surface) 50%,
+    var(--bn-border) 70%
+  );
+  background-size: 200% 100%;
+  animation: bn-skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes bn-skeleton-shimmer {
+  0% { background-position: 150% 0; }
+  100% { background-position: -50% 0; }
+}
+
+.bn-img-skeleton-img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bn-img-skeleton-img.is-loaded {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-img-skeleton {
+    animation: none;
+  }
+}

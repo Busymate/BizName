@@ -1,0 +1,755 @@
+.bn-dashboard-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ----- Topbar ----- */
+.bn-dashboard-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.bn-dashboard-topbar h1 {
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem;
+  color: var(--bn-text);
+}
+
+.bn-dashboard-topbar p {
+  margin: 0;
+  color: var(--bn-text-secondary);
+  font-size: 0.92rem;
+}
+
+.bn-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* ----- KPI row ----- */
+.bn-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.1rem;
+}
+
+.bn-kpi-card {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+}
+
+.bn-kpi-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+}
+
+.bn-kpi-blue { background: #dbeafe; color: #1d4ed8; }
+.bn-kpi-green { background: #dcfce7; color: #15803d; }
+.bn-kpi-purple { background: #ede9fe; color: #6d28d9; }
+.bn-kpi-orange { background: #ffedd5; color: #c2410c; }
+
+.bn-kpi-body h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bn-text-secondary);
+}
+
+.bn-kpi-value {
+  margin: 0 0 0.35rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--bn-text);
+}
+
+.bn-kpi-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-kpi-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 700;
+}
+
+.bn-kpi-up { color: var(--bn-success); }
+.bn-kpi-down { color: var(--bn-danger); }
+
+/* ----- Card head (shared across dashboard cards) ----- */
+.bn-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.bn-card-head h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--bn-text);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.bn-view-all-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--bn-primary);
+  text-decoration: none;
+}
+
+.bn-view-all-link:hover {
+  text-decoration: underline;
+}
+
+.bn-muted-text {
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+  margin: 0;
+}
+
+/* ----- 3-column row: Daily Usage / Quick Actions / Advisor teaser ----- */
+.bn-dashboard-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ----- Daily usage bars ----- */
+.bn-quota-row {
+  margin-bottom: 1rem;
+}
+
+.bn-quota-row:last-of-type {
+  margin-bottom: 0.5rem;
+}
+
+.bn-quota-row-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+/* ----- Quick actions (stacked variant used on Dashboard) ----- */
+.bn-quick-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.bn-quick-actions-stack .bn-quick-action span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.bn-advisor-teaser {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----- Two-column row: Recent Invoices / Referral Overview ----- */
+.bn-dashboard-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.bn-table-footnote {
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  color: var(--bn-text-secondary);
+}
+
+/* ----- Referral overview card ----- */
+.bn-referral-label {
+  font-size: 0.8rem;
+  color: var(--bn-text-secondary);
+  margin: 0 0 0.5rem;
+}
+
+.bn-referral-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.bn-referral-stat-value {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--bn-text);
+}
+
+.bn-referral-stat-label {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-referral-cta {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* ----- Business tips list ----- */
+.bn-tip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.bn-tip-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.bn-tip-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 10px;
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.bn-tip-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--bn-text);
+  line-height: 1.4;
+}
+
+.bn-tip-date {
+  margin: 0.15rem 0 0;
+  font-size: 0.76rem;
+  color: var(--bn-text-secondary);
+}
+
+/* ----- Upgrade card ----- */
+.bn-upgrade-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.bn-upgrade-card > p {
+  color: var(--bn-text-secondary);
+  font-size: 0.88rem;
+  margin: 0 0 1rem;
+}
+
+.bn-upgrade-list {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.bn-upgrade-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--bn-text);
+}
+
+.bn-upgrade-list li i {
+  color: var(--bn-success);
+}
+
+/* ----- AI Business Advisor card ----- */
+.bn-ai-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--bn-primary);
+  background: var(--bn-primary-soft);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.bn-advisor-insight-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.bn-advisor-insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  background: var(--bn-bg);
+  color: var(--bn-text);
+}
+
+.bn-advisor-insight i {
+  margin-top: 0.15rem;
+}
+
+.bn-advisor-insight-warn i { color: var(--bn-warning); }
+.bn-advisor-insight-good i { color: var(--bn-success); }
+
+.bn-ai-suggestion-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.bn-ai-disclaimer {
+  margin: 0.75rem 0 0;
+  font-size: 0.75rem;
+  color: var(--bn-text-secondary);
+  text-align: center;
+}
+
+.bn-dashboard-page .bn-dashboard-logout {
+  align-self: flex-start;
+}
+
+.bn-dashboard-version {
+  align-self: flex-start;
+  font-size: 0.78rem;
+  color: var(--bn-text-secondary);
+  opacity: 0.75;
+  margin: -0.5rem 0 0;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 1100px) {
+  .bn-dashboard-3col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .bn-dashboard-two-col {
+    grid-template-columns: 1fr;
+  }
+  .bn-dashboard-3col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .bn-kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bn-dashboard-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .bn-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dashboard content now flows straight down the page in full-width
+   rows (matching the Business Tips page) instead of a wide-main +
+   narrow-aside split — .bn-dashboard-two-col below pairs widgets
+   two-per-row where it makes sense, but nothing is pinned to a
+   persistent side column. */
+
+/* ----- Welcome hero ----- */
+.bn-hero-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, var(--bn-primary-soft), var(--bn-surface));
+}
+
+.bn-hero-text h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.4rem;
+  color: var(--bn-text);
+}
+
+.bn-hero-text > p {
+  margin: 0 0 1.1rem;
+  color: var(--bn-text-secondary);
+  font-size: 0.92rem;
+}
+
+.bn-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.bn-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.bn-hero-btn-solid {
+  background: var(--bn-primary);
+  color: #fff;
+}
+
+.bn-hero-btn-solid:hover {
+  background: var(--bn-primary-dark);
+}
+
+.bn-hero-btn-outline {
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  border: 1px solid var(--bn-border);
+}
+
+.bn-hero-btn-outline:hover {
+  border-color: var(--bn-primary);
+  color: var(--bn-primary);
+}
+
+.bn-hero-illustration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 140px;
+}
+
+.bn-hero-illustration i {
+  font-size: 2.75rem;
+  color: var(--bn-primary);
+  opacity: 0.85;
+}
+
+/* ----- This Week Overview (aside) ----- */
+.bn-week-overview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.bn-week-overview-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.bn-week-overview-row span {
+  color: var(--bn-text-secondary);
+  flex: 1;
+}
+
+.bn-week-overview-row strong {
+  color: var(--bn-text);
+  font-size: 0.95rem;
+}
+
+/* ----- Ask BizName AI (aside quick widget) ----- */
+.bn-ai-quick-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.bn-ai-quick-suggestions button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  text-align: left;
+  background: var(--bn-bg);
+  border: 1px solid var(--bn-border);
+  color: var(--bn-text);
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.bn-ai-quick-suggestions button:hover {
+  border-color: var(--bn-primary);
+  color: var(--bn-primary);
+}
+
+.bn-ai-quick-reply {
+  background: var(--bn-bg);
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--bn-text);
+  margin-bottom: 0.9rem;
+  max-height: 200px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* ----- Analytics Overview (aside) ----- */
+.bn-analytics-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.bn-analytics-most-used {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--bn-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.bn-usage-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ----- Quick Actions grid (icon tiles) ----- */
+.bn-quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.bn-qa-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid var(--bn-border);
+  background: var(--bn-bg);
+  color: var(--bn-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bn-qa-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.bn-qa-tile i {
+  font-size: 1.15rem;
+}
+
+.bn-qa-blue i { color: #1d4ed8; }
+.bn-qa-green i { color: #15803d; }
+.bn-qa-purple i { color: #6d28d9; }
+.bn-qa-orange i { color: #c2410c; }
+.bn-qa-teal i { color: #0d9488; }
+.bn-qa-pink i { color: #be185d; }
+
+/* ----- Recent Documents table ----- */
+.bn-doc-icon {
+  color: var(--bn-primary);
+  margin-right: 0.4rem;
+}
+
+/* ----- Recent Activity feed ----- */
+.bn-activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bn-activity-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.bn-activity-icon {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+}
+
+.bn-activity-blue { background: #dbeafe; color: #1d4ed8; }
+.bn-activity-purple { background: #ede9fe; color: #6d28d9; }
+.bn-activity-green { background: #dcfce7; color: #15803d; }
+
+.bn-activity-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--bn-text);
+  line-height: 1.4;
+}
+
+.bn-activity-quote {
+  color: var(--bn-text-secondary);
+  font-style: italic;
+}
+
+.bn-activity-time {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  color: var(--bn-text-secondary);
+}
+
+/* ----- Favorite Tools grid ----- */
+.bn-fav-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.bn-fav-tool-tile {
+  position: relative;
+  border: 1px solid var(--bn-border);
+  border-radius: 12px;
+  background: var(--bn-bg);
+  padding: 0.35rem;
+}
+
+.bn-fav-tool-tile a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.75rem 0.4rem;
+  text-decoration: none;
+  color: var(--bn-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.bn-fav-tool-tile a i {
+  font-size: 1.1rem;
+  color: var(--bn-primary);
+}
+
+.bn-fav-tool-star {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  background: none;
+  border: none;
+  color: #f59e0b;
+  cursor: pointer;
+  font-size: 0.72rem;
+  padding: 0.15rem;
+}
+
+/* ----- Plan / upgrade banner ----- */
+.bn-plan-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, var(--bn-primary-soft), var(--bn-surface));
+}
+
+.bn-plan-banner-text h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  color: var(--bn-text);
+}
+
+.bn-plan-banner-illustration i {
+  font-size: 3rem;
+  color: var(--bn-primary);
+  opacity: 0.85;
+}
+
+@media (max-width: 700px) {
+  .bn-hero-card,
+  .bn-plan-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .bn-quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bn-fav-tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

@@ -19,8 +19,13 @@ export default function InvoiceGenerator() {
   const [discount, setDiscount] = useState(0);
   const [taxRate, setTaxRate] = useState(7.5);
   const [notes, setNotes] = useState('Thank you for your business! Payment is due within 14 days.');
+  const [status, setStatus] = useState('Pending');
+  const [paymentMethod, setPaymentMethod] = useState('Bank Transfer');
 
-  const { entries, save, remove } = useSavedCalculations(SLUG);
+  const { entries, save, remove } = useSavedCalculations(SLUG, {
+    typeFor: 'invoice',
+    nameFor: (data) => `${data.invoiceNumber} — ${data.client?.name || 'Client'}`,
+  });
 
   const updateItem = (id, field, value) => {
     setItems((prev) => prev.map((it) => (it.id === id ? { ...it, [field]: value } : it)));
@@ -40,7 +45,7 @@ export default function InvoiceGenerator() {
     `Invoice ${invoiceNumber}\nFrom: ${business.name}\nTo: ${client.name}\nTotal: ${fmt(total)}`;
 
   const handleSave = () => {
-    save({ invoiceNumber, business, client, items, total, currency });
+    save({ invoiceNumber, business, client, items, total, currency, status, invoiceDate, dueDate, paymentMethod });
   };
 
   return (
@@ -50,6 +55,7 @@ export default function InvoiceGenerator() {
       description="Create professional invoices in seconds. Download and share easily."
       getCopyText={getCopyText}
       onSave={handleSave}
+      resultSelector=".bn-invoice-preview"
     >
       <div className="bn-invoice-layout">
         <div className="bn-invoice-form">
@@ -113,6 +119,22 @@ export default function InvoiceGenerator() {
                 <label>Due Date</label>
                 <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
               </div>
+            </div>
+            <div className="bn-input-group">
+              <label>Status</label>
+              <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                <option>Pending</option>
+                <option>Paid</option>
+              </select>
+            </div>
+            <div className="bn-input-group">
+              <label>Payment Method</label>
+              <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
+                <option>Bank Transfer</option>
+                <option>Cash</option>
+                <option>Card</option>
+                <option>Mobile Money</option>
+              </select>
             </div>
           </div>
 
@@ -178,6 +200,7 @@ export default function InvoiceGenerator() {
             <div className="bn-invoice-preview-dates">
               <p>Date: {invoiceDate}</p>
               {dueDate && <p>Due: {dueDate}</p>}
+              <p>Payment: {paymentMethod}</p>
             </div>
           </div>
           <div className="bn-invoice-preview-bill">
@@ -222,7 +245,7 @@ export default function InvoiceGenerator() {
           {entries.map((e) => (
             <SavedRow
               key={e.id}
-              label={`${e.data.invoiceNumber} — ${e.data.client?.name || 'Client'}`}
+              label={`${e.data.invoiceNumber} — ${e.data.client?.name || 'Client'} (${e.data.status || 'Pending'})`}
               value={`${e.data.currency}${Number(e.data.total).toLocaleString()}`}
               copyText={`Invoice ${e.data.invoiceNumber}\nClient: ${e.data.client?.name || 'Client'}\nTotal: ${e.data.currency}${Number(e.data.total).toLocaleString()}`}
               onDelete={() => remove(e.id)}

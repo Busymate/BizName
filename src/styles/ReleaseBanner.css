@@ -1,0 +1,113 @@
+.bn-release-banner-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+  animation: bn-fade-in 0.2s ease;
+}
+
+.bn-release-banner {
+  background: var(--bn-surface);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: bn-release-pop 0.25s ease;
+}
+
+@keyframes bn-release-pop {
+  from { transform: scale(0.94); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.bn-release-banner-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bn-release-banner h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.2rem;
+  color: var(--bn-text);
+}
+
+.bn-release-banner-subtitle {
+  color: var(--bn-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+}
+
+.bn-release-banner-label {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--bn-text-secondary);
+  margin: 0 0 0.5rem;
+}
+
+.bn-release-banner ul {
+  text-align: left;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bn-release-banner ul li {
+  font-size: 0.88rem;
+  color: var(--bn-text);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.bn-release-banner ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--bn-primary);
+  font-weight: 700;
+}
+
+.bn-release-banner-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.bn-release-banner-actions button {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.bn-release-banner-dismiss {
+  border: 1.5px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text);
+}
+
+.bn-release-banner-dismiss:hover {
+  background: var(--bn-bg);
+}
+
+.bn-release-banner-view {
+  border: none;
+  background: var(--bn-primary);
+  color: #fff;
+}
+
+.bn-release-banner-view:hover {
+  background: var(--bn-primary-dark);
+}

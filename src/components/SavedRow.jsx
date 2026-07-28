@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/SavedRow.css';
 
 /**
  * One row inside a "Saved Calculations" / "Recent X" list. Standardizes

@@ -1,0 +1,85 @@
+.bn-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.bn-faq-item {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: var(--bn-radius);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bn-faq-item.is-open {
+  border-color: var(--bn-primary);
+  box-shadow: var(--bn-shadow);
+}
+
+.bn-faq-question {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  padding: 1.1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bn-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.bn-faq-question:focus-visible {
+  outline: 2px solid var(--bn-primary);
+  outline-offset: -2px;
+}
+
+.bn-faq-icon {
+  flex-shrink: 0;
+  color: var(--bn-text-secondary);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.bn-faq-item.is-open .bn-faq-icon {
+  transform: rotate(180deg);
+  color: var(--bn-primary);
+}
+
+/* Grid-based height animation: animates from 0fr to 1fr rather than a
+   fixed max-height, so it works regardless of answer length and never
+   clips or leaves an awkward gap. */
+.bn-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.bn-faq-item.is-open .bn-faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.bn-faq-answer-inner {
+  overflow: hidden;
+}
+
+.bn-faq-answer p {
+  margin: 0;
+  padding: 0 1.5rem 1.25rem;
+  color: var(--bn-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-faq-answer,
+  .bn-faq-icon {
+    transition: none;
+  }
+}

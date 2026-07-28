@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SEO from '../components/SEO';
 import ToolCard from '../components/ToolCard';
+import AdSlot from '../components/AdSlot';
 import tools, { categories } from '../data/tools';
-import useFavorites from '../hooks/useFavorites';
 import useRecentTools from '../hooks/useRecentTools';
 import '../styles/Tools.css';
 
@@ -11,27 +11,22 @@ export default function Tools() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const activeCategory = searchParams.get('category') || 'All';
-  const showFavoritesOnly = searchParams.get('favorites') === '1';
 
-  const { favorites } = useFavorites();
   const { recent } = useRecentTools();
-
   const recentTools = recent.map((s) => tools.find((t) => t.slug === s)).filter(Boolean);
 
   const filtered = useMemo(() => {
     return tools.filter((t) => {
-      if (showFavoritesOnly && !favorites.includes(t.slug)) return false;
       if (activeCategory !== 'All' && t.category !== activeCategory) return false;
       if (query && !`${t.name} ${t.description}`.toLowerCase().includes(query.toLowerCase())) return false;
       return true;
     });
-  }, [activeCategory, query, showFavoritesOnly, favorites]);
+  }, [activeCategory, query]);
 
   const setCategory = (cat) => {
     const params = new URLSearchParams(searchParams);
     if (cat === 'All') params.delete('category');
     else params.set('category', cat);
-    params.delete('favorites');
     setSearchParams(params);
   };
 
@@ -53,10 +48,12 @@ export default function Tools() {
         </div>
       </div>
 
+      <AdSlot type="banner" label="Advertisement" />
+
       <div className="bn-tools-layout">
         <aside className="bn-tools-sidebar">
           <h4>Categories</h4>
-          <button className={activeCategory === 'All' && !showFavoritesOnly ? 'active' : ''} onClick={() => setCategory('All')}>
+          <button className={activeCategory === 'All' ? 'active' : ''} onClick={() => setCategory('All')}>
             All Tools
           </button>
           {categories.map((cat) => (
@@ -64,16 +61,10 @@ export default function Tools() {
               {cat}
             </button>
           ))}
-          <button
-            className={showFavoritesOnly ? 'active' : ''}
-            onClick={() => setSearchParams({ favorites: '1' })}
-          >
-            <i className="fa-solid fa-star" /> My Favorites ({favorites.length})
-          </button>
         </aside>
 
         <div className="bn-tools-content">
-          {recentTools.length > 0 && !showFavoritesOnly && (
+          {recentTools.length > 0 && (
             <div className="bn-recent-strip">
               <h4>Recently Used</h4>
               <div className="bn-recent-strip-row">

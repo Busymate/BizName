@@ -1,0 +1,480 @@
+/* When the app sidebar is present (Dashboard, Customers, etc.), the
+   footer should sit flush against it with zero gap — the marketing
+   pages' breathing room above the footer (Footer.css: margin-top: 4rem)
+   is specifically NOT wanted here. :has() lets this be a one-line
+   override instead of every app page needing its own footer-adjacent
+   spacing rule. */
+.bn-main:has(.bn-app-layout) + .bn-footer {
+  margin-top: 0;
+}
+
+.bn-app-layout {
+  display: flex;
+  align-items: flex-start;
+  min-height: calc(100vh - var(--bn-navbar-h));
+  background: var(--bn-bg);
+}
+
+.bn-sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: var(--bn-sidebar-bg, #0b1220);
+  min-height: calc(100vh - var(--bn-navbar-h));
+  position: sticky;
+  top: var(--bn-navbar-h);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+}
+
+.bn-sidebar-scroll {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---- Desktop persistent nav ---- */
+.bn-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.bn-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  color: #cbd5e1;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bn-sidebar-link i {
+  width: 18px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.bn-sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.bn-sidebar-link.is-active {
+  background: var(--bn-primary);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.bn-sidebar-badge {
+  margin-left: auto;
+  background: var(--bn-success);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.bn-sidebar-profile {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.75rem 0.6rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bn-sidebar-profile-avatar {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  background: var(--bn-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.bn-sidebar-profile-info {
+  min-width: 0;
+}
+
+.bn-sidebar-profile-name {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bn-sidebar-profile-email {
+  margin: 0.1rem 0 0;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bn-sidebar-logout {
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1rem;
+}
+
+.bn-sidebar-logout:hover {
+  background: rgba(220, 38, 38, 0.15);
+  color: #fca5a5;
+}
+
+.bn-sidebar-backdrop {
+  display: none;
+}
+
+.bn-app-content {
+  flex: 1;
+  min-width: 0;
+  padding: 1.75rem;
+}
+
+/* ---- Mobile-only pieces: hidden entirely on desktop ---- */
+.bn-sidebar-mobile-header,
+.bn-sidebar-mobile-profile,
+.bn-sidebar-mobile-nav,
+.bn-sidebar-upgrade,
+.bn-sidebar-mobile-section {
+  display: none;
+}
+
+/* ----- Mobile: sidebar becomes the "More" slide-in drawer ----- */
+@media (max-width: 900px) {
+  .bn-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: min(360px, 88vw);
+    min-width: 0;
+    height: 100vh;
+    min-height: 100vh;
+    z-index: 1201;
+    padding: 0;
+    border-radius: 0 16px 16px 0;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 16px 0 48px rgba(0, 0, 0, 0.28);
+    background: var(--bn-surface);
+    color: var(--bn-text);
+  }
+
+  .bn-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .bn-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 25, 0.5);
+    z-index: 1200;
+  }
+
+  .bn-app-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .bn-sidebar-scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Desktop-only nav + footer profile card give way to the mobile
+     header/profile/list/upgrade/support layout below. */
+  .bn-sidebar-nav,
+  .bn-sidebar-profile {
+    display: none;
+  }
+
+  /* ---- Header: "More" title + close, side-drawer style ---- */
+  .bn-sidebar-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.25rem 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bn-surface);
+    z-index: 2;
+    border-bottom: 1px solid var(--bn-border);
+  }
+
+  .bn-sidebar-mobile-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--bn-text);
+  }
+
+  .bn-sidebar-close {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid var(--bn-border);
+    background: var(--bn-bg);
+    color: var(--bn-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .bn-sidebar-close:hover {
+    background: var(--bn-border);
+  }
+
+  /* ---- Profile card ---- */
+  .bn-sidebar-mobile-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem 1.25rem 0;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    background: var(--bn-primary-soft);
+    text-decoration: none;
+  }
+
+  .bn-sidebar-mobile-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    background: var(--bn-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .bn-sidebar-mobile-profile-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 0.1rem;
+  }
+
+  .bn-sidebar-mobile-profile-name {
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: var(--bn-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bn-sidebar-mobile-profile-email {
+    font-size: 0.76rem;
+    color: var(--bn-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bn-plan-pill {
+    margin-top: 0.3rem;
+    align-self: flex-start;
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: var(--bn-primary);
+    color: #fff;
+  }
+
+  .bn-plan-pill-premium {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+
+  /* ---- Nav rows with chevrons ---- */
+  .bn-sidebar-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0.9rem 0.75rem 0;
+    gap: 0.1rem;
+  }
+
+  .bn-sidebar-mobile-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-height: 52px;
+    padding: 0 0.6rem;
+    margin: 0 0.15rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--bn-text);
+    font-weight: 600;
+    font-size: 0.94rem;
+  }
+
+  .bn-sidebar-mobile-row:hover {
+    background: var(--bn-bg);
+  }
+
+  .bn-sidebar-mobile-row.is-active {
+    background: var(--bn-primary-soft);
+    color: var(--bn-primary);
+  }
+
+  .bn-sidebar-mobile-row.is-active .bn-sidebar-mobile-row-icon {
+    color: var(--bn-primary);
+  }
+
+  .bn-sidebar-mobile-row-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    flex-shrink: 0;
+    color: var(--bn-text-secondary);
+    font-size: 0.92rem;
+  }
+
+  .bn-sidebar-mobile-row-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bn-sidebar-mobile-row-chevron {
+    font-size: 0.68rem;
+    color: var(--bn-text-secondary);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  /* ---- Upgrade to Pro banner ---- */
+  .bn-sidebar-upgrade {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 1rem 1.25rem 0;
+    padding: 0.95rem 1rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #6d28d9, #4338ca);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .bn-sidebar-upgrade-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .bn-sidebar-upgrade-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .bn-sidebar-upgrade-title {
+    font-weight: 700;
+    font-size: 0.94rem;
+  }
+
+  .bn-sidebar-upgrade-sub {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.3;
+  }
+
+  .bn-sidebar-upgrade-chevron {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    flex-shrink: 0;
+  }
+
+  /* ---- Support section ---- */
+  .bn-sidebar-mobile-section {
+    display: block;
+    padding: 0 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .bn-sidebar-mobile-section-title {
+    margin: 1rem 0.6rem 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--bn-text-secondary);
+    border-top: 1px solid var(--bn-border);
+    padding-top: 1rem;
+  }
+
+  /* ---- Logout: restyled as a mobile row instead of the desktop footer link ---- */
+  .bn-sidebar-logout {
+    margin: 1rem 1.25rem 0;
+    border-top: none;
+    padding: 0 0.6rem;
+    min-height: 48px;
+    align-items: center;
+    border-radius: 12px;
+    color: var(--bn-danger);
+  }
+
+  .bn-sidebar-logout:hover {
+    background: rgba(220, 38, 38, 0.1);
+  }
+}
+
+[data-theme='dark'] .bn-sidebar {
+  background: #05070d;
+}
+
+@media (max-width: 360px) {
+  .bn-sidebar {
+    width: 100vw;
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-sidebar {
+    transition: none;
+  }
+}

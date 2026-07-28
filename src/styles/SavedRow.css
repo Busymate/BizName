@@ -1,0 +1,96 @@
+/* Styles for src/components/SavedRow.jsx — imported directly by that
+   component rather than duplicated into every tool page's own
+   stylesheet (Calculator.css and InvoiceGenerator.css each used to
+   carry their own conflicting copy of this; this file replaces both). */
+
+.bn-saved-list {
+  margin-top: 1.5rem;
+}
+
+.bn-saved-list h3 {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bn-saved-list h3::before {
+  content: '\f2f6';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--bn-primary);
+  font-size: 0.85rem;
+}
+
+.bn-saved-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bn-bg);
+  border: 1px solid var(--bn-border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  margin-bottom: 0.6rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bn-saved-row:last-child {
+  margin-bottom: 0;
+}
+
+.bn-saved-row:hover {
+  border-color: var(--bn-primary);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.bn-saved-row span:first-child {
+  color: var(--bn-text);
+  font-weight: 600;
+}
+
+.bn-saved-row span:nth-child(2) {
+  color: var(--bn-success);
+  font-weight: 700;
+  margin-right: auto;
+  padding-left: 0.75rem;
+}
+
+.bn-saved-row-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.bn-saved-row button {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  color: var(--bn-text-secondary);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bn-saved-row button:hover {
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+}
+
+.bn-saved-row button.is-copied {
+  background: #ecfdf5;
+  color: var(--bn-success);
+  border-color: #bbf7d0;
+}
+
+.bn-saved-row-delete:hover {
+  background: #fef2f2 !important;
+  color: var(--bn-danger) !important;
+}

@@ -1,0 +1,474 @@
+/* ==========================================================================
+   Premium mobile navigation drawer — simple, mockup-matching side panel:
+   brand header, profile card, search, a flat primary nav list, and an
+   Upgrade to Pro banner pinned near the bottom.
+   Only active below 960px — desktop keeps the existing top nav untouched.
+   ========================================================================== */
+
+.bn-mnav-backdrop {
+  display: none;
+}
+
+.bn-mnav {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .bn-mnav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: rgba(10, 14, 25, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0s linear 0.28s;
+  }
+
+  .bn-mnav-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.28s ease, visibility 0s linear 0s;
+  }
+
+  .bn-mnav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1201;
+    width: min(400px, 88vw);
+    background: var(--bn-surface);
+    border-radius: 0 16px 16px 0;
+    box-shadow: 16px 0 48px rgba(15, 23, 42, 0.18);
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  .bn-mnav.is-open {
+    transform: translateX(0);
+  }
+
+  .bn-mnav-scroll {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1.5rem;
+  }
+
+  /* ---- Header ---- */
+  .bn-mnav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1.25rem 1.25rem 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bn-surface);
+    z-index: 2;
+    border-bottom: 1px solid var(--bn-border);
+  }
+
+  .bn-mnav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    min-width: 0;
+  }
+
+  .bn-mnav-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    background: var(--bn-primary);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.3rem;
+  }
+
+  .bn-mnav-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    min-width: 0;
+  }
+
+  .bn-mnav-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--bn-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bn-mnav-tagline {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--bn-text-secondary);
+    letter-spacing: 0.01em;
+  }
+
+  .bn-mnav-icon-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid var(--bn-border);
+    background: var(--bn-bg);
+    color: var(--bn-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s ease;
+  }
+
+  .bn-mnav-icon-btn:hover {
+    background: var(--bn-border);
+  }
+
+  /* ---- Profile card (signed in) ---- */
+  .bn-mnav-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem 1.25rem 0;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    background: var(--bn-primary-soft);
+    text-decoration: none;
+    color: var(--bn-text);
+  }
+
+  .bn-mnav-avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: var(--bn-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .bn-mnav-profile-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .bn-mnav-profile-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bn-mnav-profile-email {
+    font-size: 0.76rem;
+    color: var(--bn-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bn-mnav-plan-pill {
+    flex-shrink: 0;
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: var(--bn-primary);
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .bn-mnav-plan-pill-premium {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+
+  /* ---- Search ---- */
+  .bn-mnav-search {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 1rem 1.25rem 0;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    background: var(--bn-bg);
+    border: 1px solid var(--bn-border);
+    color: var(--bn-text-secondary);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .bn-mnav-search:focus-within {
+    border-color: var(--bn-primary);
+    box-shadow: 0 0 0 3px var(--bn-primary-soft);
+  }
+
+  .bn-mnav-search input {
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--bn-text);
+    font-size: 0.92rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bn-mnav-search input::placeholder {
+    color: var(--bn-text-secondary);
+  }
+
+  /* ---- Primary nav rows ---- */
+  .bn-mnav-primary {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0.75rem 0;
+  }
+
+  .bn-mnav-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-height: 54px;
+    padding: 0 0.6rem;
+    margin: 0 0.15rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--bn-text);
+    font-weight: 600;
+    font-size: 0.96rem;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  .bn-mnav.is-open .bn-mnav-row {
+    animation: bn-mnav-row-in 0.32s ease forwards;
+    animation-delay: calc(0.04s + var(--bn-mnav-i, 0) * 0.035s);
+  }
+
+  .bn-mnav-row:hover {
+    background: var(--bn-bg);
+  }
+
+  .bn-mnav-row.active {
+    background: var(--bn-primary-soft);
+    color: var(--bn-primary);
+  }
+
+  .bn-mnav-row.active::before {
+    content: '';
+    position: absolute;
+    left: -0.75rem;
+    top: 12px;
+    bottom: 12px;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--bn-primary);
+  }
+
+  .bn-mnav-row-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    flex-shrink: 0;
+    color: var(--bn-text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .bn-mnav-row.active .bn-mnav-row-icon {
+    color: var(--bn-primary);
+  }
+
+  .bn-mnav-row-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bn-mnav-row-chevron {
+    font-size: 0.7rem;
+    color: var(--bn-text-secondary);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  /* Pushes the Upgrade banner / auth buttons down toward the bottom of
+     the drawer on taller screens, without pinning it absolutely (so it
+     still scrolls naturally on short screens instead of overlapping). */
+  .bn-mnav-spacer {
+    flex: 1;
+    min-height: 1.25rem;
+  }
+
+  /* ---- Upgrade to Pro banner ---- */
+  .bn-mnav-upgrade {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 0 1.25rem;
+    padding: 0.95rem 1rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #6d28d9, #4338ca);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .bn-mnav-upgrade-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .bn-mnav-upgrade-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .bn-mnav-upgrade-title {
+    font-weight: 700;
+    font-size: 0.94rem;
+  }
+
+  .bn-mnav-upgrade-sub {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.3;
+  }
+
+  .bn-mnav-upgrade-chevron {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    flex-shrink: 0;
+  }
+
+  /* ---- Auth buttons (signed out) ---- */
+  .bn-mnav-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0 1.25rem;
+  }
+
+  .bn-mnav-auth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+
+  .bn-mnav-auth-solid {
+    background: var(--bn-primary);
+    color: #fff;
+  }
+
+  .bn-mnav-auth-outline {
+    background: transparent;
+    color: var(--bn-primary);
+    border: 1.5px solid var(--bn-primary);
+  }
+
+  /* ---- Footer ---- */
+  .bn-mnav-footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1.25rem 1.25rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bn-border);
+    font-size: 0.76rem;
+    color: var(--bn-text-secondary);
+  }
+
+  .bn-mnav-footer a {
+    color: var(--bn-text-secondary);
+    text-decoration: none;
+  }
+
+  .bn-mnav-footer a:hover {
+    color: var(--bn-primary);
+  }
+
+  .bn-mnav-footer-dot {
+    opacity: 0.6;
+  }
+
+  .bn-mnav-footer-full {
+    width: 100%;
+    margin-top: 0.15rem;
+  }
+}
+
+/* ---- Small phones: keep it airy, no crowding ---- */
+@media (max-width: 360px) {
+  .bn-mnav {
+    width: 100vw;
+    border-radius: 0;
+  }
+}
+
+/* ---- Tablets: a slightly wider, more generous panel ---- */
+@media (min-width: 768px) and (max-width: 960px) {
+  .bn-mnav {
+    width: min(400px, 45vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-mnav,
+  .bn-mnav-backdrop,
+  .bn-mnav-row {
+    transition: none;
+    animation: none !important;
+  }
+
+  .bn-mnav-row {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bn-mnav-row-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

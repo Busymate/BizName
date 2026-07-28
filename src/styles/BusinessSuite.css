@@ -1,0 +1,529 @@
+.bn-table-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.bn-table-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.bn-table-export-btn:hover:not(:disabled) {
+  border-color: var(--bn-primary);
+  color: var(--bn-primary);
+}
+
+.bn-table-export-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ----- Shared data table (Saved Items, Recent Invoices, Customers) ----- */
+
+/* ----- Shared card/grid primitives (Dashboard, Referrals, Customers) ----- */
+.bn-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.bn-dashboard-card {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.bn-dashboard-card h3 {
+  font-size: 0.95rem;
+  color: var(--bn-text-secondary);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bn-dashboard-card .bn-stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--bn-text);
+}
+
+.bn-quota-bar-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bn-bg);
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+
+.bn-quota-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--bn-primary);
+}
+
+.bn-referral-code-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--bn-primary-soft);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--bn-primary);
+}
+
+.bn-referral-code-box button {
+  border: none;
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--bn-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.bn-referral-code-box button:hover {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+.bn-dashboard-logout {
+  border: 1.5px solid var(--bn-border);
+  background: transparent;
+  color: var(--bn-text);
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bn-dashboard-logout:hover {
+  background: var(--bn-bg);
+  border-color: var(--bn-danger);
+  color: var(--bn-danger);
+}
+.bn-table-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.bn-table-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bn-surface);
+  border: 1.5px solid var(--bn-border);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  min-width: 220px;
+  flex: 1;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* The input itself has outline:none below (it sits flush inside this
+   pill, a default focus ring would look clipped/broken) — this
+   :focus-within on the wrapper is the actual visible focus indicator
+   for keyboard users, so removing the input's outline doesn't leave
+   search boxes with no focus feedback at all (WCAG 2.4.7). */
+.bn-table-search:focus-within {
+  border-color: var(--bn-primary);
+  box-shadow: 0 0 0 3px var(--bn-primary-soft);
+}
+
+.bn-table-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--bn-text);
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.bn-table-filter select {
+  border: 1.5px solid var(--bn-border);
+  border-radius: 10px;
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.bn-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--bn-border);
+  border-radius: 14px;
+}
+
+.bn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.bn-table th {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  background: var(--bn-bg);
+  color: var(--bn-text-secondary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bn-table th i {
+  margin-left: 0.35rem;
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+.bn-table td {
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--bn-border);
+  color: var(--bn-text);
+  vertical-align: middle;
+}
+
+.bn-table tbody tr:hover {
+  background: var(--bn-bg);
+}
+
+.bn-table-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.bn-table-actions button {
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text-secondary);
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bn-table-actions button:hover {
+  background: var(--bn-primary-soft);
+  color: var(--bn-primary);
+}
+
+.bn-table-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.bn-badge-paid { background: #dcfce7; color: #15803d; }
+.bn-badge-pending { background: #fef3c7; color: #b45309; }
+.bn-badge-invoice { background: #dbeafe; color: #1d4ed8; }
+.bn-badge-receipt { background: #ede9fe; color: #6d28d9; }
+.bn-badge-calculation { background: #e0f2fe; color: #0369a1; }
+.bn-badge-template { background: #fce7f3; color: #be185d; }
+.bn-badge-document { background: #f3f4f6; color: #374151; }
+
+.bn-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+}
+
+.bn-pagination-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.bn-pagination-buttons button {
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.bn-pagination-buttons button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ----- Quick actions ----- */
+.bn-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.bn-quick-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--bn-border);
+  background: var(--bn-surface);
+  color: var(--bn-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.bn-quick-action:hover {
+  border-color: var(--bn-primary);
+  color: var(--bn-primary);
+}
+
+/* ----- AI chat / advisor widgets ----- */
+.bn-ai-card {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bn-ai-card h3 {
+  font-size: 0.95rem;
+  color: var(--bn-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.bn-ai-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.bn-ai-msg {
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  max-width: 92%;
+  white-space: pre-wrap;
+}
+
+.bn-ai-msg-user {
+  align-self: flex-end;
+  background: var(--bn-primary);
+  color: #fff;
+}
+
+.bn-ai-msg-assistant {
+  align-self: flex-start;
+  background: var(--bn-bg);
+  color: var(--bn-text);
+}
+
+.bn-ai-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bn-ai-input-row input {
+  flex: 1;
+  border: 1.5px solid var(--bn-border);
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  background: var(--bn-bg);
+  color: var(--bn-text);
+  font-size: 0.9rem;
+}
+
+.bn-ai-input-row button {
+  border: none;
+  background: var(--bn-primary);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 1.1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.bn-ai-input-row button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bn-ai-suggestion {
+  border: 1px solid var(--bn-border);
+  background: transparent;
+  color: var(--bn-text-secondary);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.bn-ai-suggestion:hover {
+  border-color: var(--bn-primary);
+  color: var(--bn-primary);
+}
+
+/* ----- Insight cards (Customer Intelligence) ----- */
+.bn-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.bn-insight-card {
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-border);
+  border-radius: 14px;
+  padding: 1.1rem;
+}
+
+.bn-insight-card h4 {
+  font-size: 0.85rem;
+  color: var(--bn-text-secondary);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bn-insight-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.bn-insight-card li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.bn-insight-empty {
+  color: var(--bn-text-secondary);
+  font-size: 0.85rem;
+}
+
+/* ----- Tabs ----- */
+.bn-tabs {
+  display: flex;
+  gap: 0.4rem;
+  border-bottom: 1px solid var(--bn-border);
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.bn-tab {
+  border: none;
+  background: transparent;
+  color: var(--bn-text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.2rem;
+  margin-right: 1.25rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.bn-tab.active {
+  color: var(--bn-primary);
+  border-bottom-color: var(--bn-primary);
+}
+
+.bn-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.bn-modal {
+  background: var(--bn-surface);
+  border-radius: 14px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.bn-modal h3 {
+  margin-top: 0;
+}
+
+.bn-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .bn-dashboard-grid,
+  .bn-insight-grid,
+  .bn-quick-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .bn-dashboard-two-col {
+    grid-template-columns: 1fr !important;
+  }
+}
