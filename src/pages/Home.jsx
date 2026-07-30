@@ -45,7 +45,7 @@ const TESTIMONIALS = [
   {
     name: 'Grace Adeyemi',
     role: 'Creative Director, GA Studio',
-    quote: 'Clean templates, no sign-up friction, and everything is genuinely free. My clients think our quotes look premium now.',
+    quote: 'Clean templates, no sign-up friction, and everything is genuinely free. My clients think our quotes look really professional now.',
     initial: 'G',
   },
   {

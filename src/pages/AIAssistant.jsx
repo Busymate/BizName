@@ -479,8 +479,8 @@ export default function AIAssistant() {
 
       <div className="bn-assistant-chat">
         <div className="bn-assistant-chat-head">
-          <button className="bn-assistant-hamburger" onClick={() => setSidebarOpen(true)} type="button" aria-label="Show chats">
-            <i className="fa-solid fa-bars" />
+          <button className="bn-assistant-hamburger" onClick={() => setSidebarOpen(true)} type="button" aria-label="Show chat history">
+            <i className="fa-solid fa-clock-rotate-left" />
           </button>
           <h1>{active?.title || 'AI Business Assistant'}</h1>
           {active && (
@@ -529,7 +529,11 @@ export default function AIAssistant() {
           className="bn-assistant-input-row"
           onSubmit={(e) => { e.preventDefault(); send(); }}
         >
-          
+          <div className="bn-assistant-input-tools">
+            <button type="button" disabled title="Attachments coming soon"><i className="fa-solid fa-paperclip" /></button>
+            <button type="button" disabled title="Images coming soon"><i className="fa-solid fa-image" /></button>
+            <button type="button" disabled title="Templates coming soon"><i className="fa-solid fa-table-cells" /></button>
+          </div>
           <input
             placeholder="Ask me anything about your business…"
             value={input}

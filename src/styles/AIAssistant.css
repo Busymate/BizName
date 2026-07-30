@@ -568,7 +568,7 @@
     width: 280px;
     min-width: 0;
     max-width: 85vw;
-    z-index: 70;
+    z-index: 1010;
     border-radius: 0;
     transform: translateX(-100%);
     transition: transform 0.25s ease;
@@ -587,7 +587,7 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
-    z-index: 65;
+    z-index: 1005;
   }
 }
 

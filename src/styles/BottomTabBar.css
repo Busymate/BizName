@@ -68,6 +68,31 @@
     padding-bottom: calc(1.75rem + 58px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
+  /* Same idea for public pages: .bn-main isn't wrapped in .bn-app-content
+     (that only exists inside DashboardLayout), so give it — and the
+     Footer right after it — the same breathing room whenever the public
+     bottom nav is present. :has() degrades gracefully to no-op on any
+     browser that doesn't support it (bar still shows, just no extra
+     padding), never breaking the layout outright. */
+  body:has(.bn-bottom-tabs-public) .bn-main {
+    padding-bottom: calc(1.5rem + 58px + env(safe-area-inset-bottom, 0px));
+  }
+  body:has(.bn-bottom-tabs-public) .bn-footer {
+    padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Six tabs (vs. the dashboard bar's four + More) need marginally
+     tighter type so "Business Tips" doesn't get clipped on narrow
+     phones — the shared ellipsis rule above still catches the rest. */
+  .bn-bottom-tabs-public .bn-bottom-tab {
+    font-size: 0.58rem;
+    padding: 0.4rem 0.1rem;
+  }
+
+  .bn-bottom-tabs-public .bn-bottom-tab i {
+    font-size: 1rem;
+  }
+
   body .bn-assistant-page {
     /* AI Assistant already manages its own internal scroll region; give
        it room above the tab bar instead of double-padding its content.

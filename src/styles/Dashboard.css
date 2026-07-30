@@ -277,41 +277,6 @@
 }
 
 /* ----- Upgrade card ----- */
-.bn-upgrade-card h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 0.5rem;
-  font-size: 1.05rem;
-}
-
-.bn-upgrade-card > p {
-  color: var(--bn-text-secondary);
-  font-size: 0.88rem;
-  margin: 0 0 1rem;
-}
-
-.bn-upgrade-list {
-  list-style: none;
-  margin: 0 0 1.25rem;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.bn-upgrade-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.88rem;
-  color: var(--bn-text);
-}
-
-.bn-upgrade-list li i {
-  color: var(--bn-success);
-}
-
 /* ----- AI Business Advisor card ----- */
 .bn-ai-badge {
   font-size: 0.72rem;
@@ -718,30 +683,8 @@
   padding: 0.15rem;
 }
 
-/* ----- Plan / upgrade banner ----- */
-.bn-plan-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  background: linear-gradient(135deg, var(--bn-primary-soft), var(--bn-surface));
-}
-
-.bn-plan-banner-text h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1.1rem;
-  color: var(--bn-text);
-}
-
-.bn-plan-banner-illustration i {
-  font-size: 3rem;
-  color: var(--bn-primary);
-  opacity: 0.85;
-}
-
 @media (max-width: 700px) {
-  .bn-hero-card,
-  .bn-plan-banner {
+  .bn-hero-card {
     flex-direction: column;
     align-items: flex-start;
   }

@@ -658,10 +658,6 @@ export default function Dashboard() {
         <AnalyticsOverviewCard overview={overview} />
       </div>
 
-      <AskAIQuickCard context={aiContext} />
-
-      
-
       <div className="bn-dashboard-two-col">
         <ReferralOverviewCard profile={profile} />
         <BusinessTipsCard />

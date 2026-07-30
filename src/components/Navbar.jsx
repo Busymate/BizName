@@ -6,12 +6,9 @@ import { getDashboardStats } from '../lib/dashboardStats';
 import { RELEASE_HISTORY } from '../config/version';
 import { KEYS, getItem } from '../utils/storage';
 import NotificationsModal from './NotificationsModal';
-import MobileNav from './MobileNav';
 import '../styles/Navbar.css';
-import '../styles/MobileNav.css';
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,23 +20,19 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const navRef = useRef(null);
-  const toggleBtnRef = useRef(null);
   const accountRef = useRef(null);
 
   const closeMenu = () => {
-    setMenuOpen(false);
     setToolsOpen(false);
   };
 
-  // Close the mobile menu whenever the route changes (e.g. tapping a link,
-  // or navigating via browser back/forward).
+  // Close the desktop "Tools" dropdown whenever the route changes (e.g.
+  // tapping a link, or navigating via browser back/forward).
   useEffect(() => {
     closeMenu();
   }, [location.pathname, location.search]);
 
-  // Close the desktop "Tools" dropdown on outside click/tap. The mobile
-  // drawer (MobileNav) lives outside this ref and handles its own
-  // dismissal via its backdrop, close button, and Escape.
+  // Close the desktop "Tools" dropdown on outside click/tap.
   useEffect(() => {
     if (!toolsOpen) return;
     const handleClickOutside = (e) => {
@@ -55,27 +48,15 @@ export default function Navbar() {
     };
   }, [toolsOpen]);
 
-  // Close on Escape key for keyboard users.
+  // Close on Escape key for keyboard users (desktop "Tools" dropdown).
   useEffect(() => {
-    if (!menuOpen) return;
+    if (!toolsOpen) return;
     const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        closeMenu();
-        toggleBtnRef.current?.focus();
-      }
+      if (e.key === 'Escape') closeMenu();
     };
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [menuOpen]);
-
-  // Lock body scroll while the mobile menu is open so the page behind it
-  // doesn't scroll along with the slide-in panel.
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [menuOpen]);
+  }, [toolsOpen]);
 
   // Drives the sticky navbar's "scrolled" look (tighter height, real
   // shadow instead of the flat border) — CSS handles the actual
@@ -132,7 +113,8 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop top nav only — hidden below 960px in favor of MobileNav */}
+        {/* Desktop top nav only — on mobile/tablet, navigation moves to the
+            fixed bottom tab bar (BottomTabBar) instead of a drawer. */}
         <nav className="bn-nav-links" ref={navRef}>
           <NavLink to="/" end onClick={closeMenu}>Home</NavLink>
           <div className={`bn-dropdown ${toolsOpen ? 'is-open' : ''}`}>
@@ -158,15 +140,6 @@ export default function Navbar() {
           <NavLink to="/about" onClick={closeMenu}>About Us</NavLink>
         </nav>
 
-        {/* Premium mobile navigation drawer — replaces the old plain
-            slide-out list below 960px. See src/components/MobileNav.jsx */}
-        <MobileNav
-          isOpen={menuOpen}
-          onClose={closeMenu}
-          session={session}
-          profile={profile}
-        />
-
         <div className="bn-navbar-actions">
           {session && (
             <form className="bn-navbar-search" onSubmit={submitSearch} role="search">
@@ -191,6 +164,7 @@ export default function Navbar() {
             <i className={`fa-solid ${darkMode ? 'fa-sun' : 'fa-moon'}`} />
           </button>
 
+
           {session && (
             <>
               <button
@@ -207,27 +181,37 @@ export default function Navbar() {
           )}
 
           {session ? (
-            <div className="bn-account-menu" ref={accountRef}>
-              <button
-                className="bn-account-trigger"
-                onClick={() => setAccountOpen((o) => !o)}
-                type="button"
-                aria-expanded={accountOpen}
-                aria-haspopup="true"
-              >
+            <>
+              <div className="bn-account-menu" ref={accountRef}>
+                <button
+                  className="bn-account-trigger"
+                  onClick={() => setAccountOpen((o) => !o)}
+                  type="button"
+                  aria-expanded={accountOpen}
+                  aria-haspopup="true"
+                >
+                  <span className="bn-account-avatar">{initial}</span>
+                  <span className="bn-account-name">{profile?.full_name || profile?.email?.split('@')[0] || 'Account'}</span>
+                  <i className="fa-solid fa-chevron-down" />
+                </button>
+                {accountOpen && (
+                  <div className="bn-account-dropdown">
+                    <Link to="/dashboard" onClick={() => setAccountOpen(false)}><i className="fa-solid fa-table-columns" /> Dashboard</Link>
+                    <Link to="/settings" onClick={() => setAccountOpen(false)}><i className="fa-solid fa-gear" /> Settings</Link>
+                    <Link to="/support" onClick={() => setAccountOpen(false)}><i className="fa-solid fa-circle-question" /> Help &amp; Support</Link>
+                    <button type="button" onClick={() => { setAccountOpen(false); logout(); }}><i className="fa-solid fa-right-from-bracket" /> Logout</button>
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile/tablet only: tapping the avatar goes straight to the
+                  dashboard instead of opening the desktop dropdown — there's
+                  no hamburger menu anymore, so this is the one entry point
+                  into the dashboard from every public page. */}
+              <Link to="/dashboard" className="bn-mobile-avatar-link" aria-label="Go to your dashboard">
                 <span className="bn-account-avatar">{initial}</span>
-                <span className="bn-account-name">{profile?.full_name || profile?.email?.split('@')[0] || 'Account'}</span>
-                <i className="fa-solid fa-chevron-down" />
-              </button>
-              {accountOpen && (
-                <div className="bn-account-dropdown">
-                  <Link to="/dashboard" onClick={() => setAccountOpen(false)}><i className="fa-solid fa-table-columns" /> Dashboard</Link>
-                  <Link to="/settings" onClick={() => setAccountOpen(false)}><i className="fa-solid fa-gear" /> Settings</Link>
-                  <Link to="/support" onClick={() => setAccountOpen(false)}><i className="fa-solid fa-circle-question" /> Help &amp; Support</Link>
-                  <button type="button" onClick={() => { setAccountOpen(false); logout(); }}><i className="fa-solid fa-right-from-bracket" /> Logout</button>
-                </div>
-              )}
-            </div>
+              </Link>
+            </>
           ) : (
             <>
               <button className="bn-navbar-cta-btn bn-navbar-cta-outline" onClick={() => navigate('/login')} type="button">
@@ -238,17 +222,6 @@ export default function Navbar() {
               </button>
             </>
           )}
-          <button
-            ref={toggleBtnRef}
-            className={`bn-icon-btn bn-menu-toggle ${menuOpen ? 'is-active' : ''}`}
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            aria-controls="bn-mobile-nav"
-            type="button"
-          >
-            <i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'}`} />
-          </button>
         </div>
       </div>
     </header>

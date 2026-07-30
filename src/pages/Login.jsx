@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import AuthLayout from '../components/AuthLayout';
 
 export default function Login() {
-  const { login, loginWithOAuth } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +13,6 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [oauthLoading, setOauthLoading] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,15 +34,6 @@ export default function Login() {
     navigate('/dashboard');
   };
 
-  const handleOAuth = async (provider) => {
-    setError('');
-    setOauthLoading(provider);
-    const { error: oauthError } = await loginWithOAuth(provider);
-    if (oauthError) {
-      setError(oauthError.message);
-      setOauthLoading('');
-    }
-  };
 
   return (
     <>
@@ -97,17 +87,6 @@ export default function Login() {
             {loading ? 'Logging in…' : 'Login'}
           </button>
         </form>
-
-        <div className="bn-auth-divider"><span>or continue with</span></div>
-
-        <div className="bn-auth-oauth-row">
-          <button type="button" className="bn-auth-oauth-btn" onClick={() => handleOAuth('google')} disabled={!!oauthLoading}>
-            <i className="fa-brands fa-google" /> {oauthLoading === 'google' ? 'Redirecting…' : 'Google'}
-          </button>
-          <button type="button" className="bn-auth-oauth-btn" onClick={() => handleOAuth('github')} disabled={!!oauthLoading}>
-            <i className="fa-brands fa-github" /> {oauthLoading === 'github' ? 'Redirecting…' : 'GitHub'}
-          </button>
-        </div>
 
         <p className="bn-auth-footer-link">Don't have an account? <Link to="/signup">Sign up</Link></p>
       </AuthLayout>

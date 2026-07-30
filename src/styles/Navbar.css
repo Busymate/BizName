@@ -388,59 +388,68 @@
   color: var(--bn-danger);
 }
 
-@media (max-width: 960px) {
+.bn-mobile-avatar-link {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.bn-mobile-avatar-link .bn-account-avatar {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
   .bn-navbar-search {
     display: none;
   }
   .bn-account-name {
     display: none;
   }
-}
-
-.bn-menu-toggle {
-  display: none;
-}
-
-.bn-menu-toggle i {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.bn-menu-toggle.is-active i {
-  transform: rotate(90deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bn-menu-toggle i {
-    transition: none;
+  /* Below 900px the full dropdown trigger (name + chevron + menu) gives
+     way to the plain avatar link so tapping it always goes straight to
+     the dashboard instead of opening a dropdown with no room to show. */
+  .bn-account-menu {
+    display: none;
+  }
+  .bn-mobile-avatar-link {
+    display: inline-flex;
   }
 }
 
-/* ----- Mobile: hide the desktop nav, hand off to MobileNav ----- */
-@media (max-width: 960px) {
+/* ----- Mobile: hide the desktop nav links, navigation moves to the
+   fixed bottom tab bar (see BottomTabBar.jsx / .css) ----- */
+@media (max-width: 900px) {
   .bn-nav-links {
     display: none;
-  }
-
-  /* Signed-out CTAs move into the drawer's own auth section on mobile,
-     keeping the sticky top bar to just the logo, quick icon actions,
-     and the hamburger — one clear entry point instead of two. */
-  .bn-navbar-cta-btn {
-    display: none;
-  }
-
-  .bn-menu-toggle {
-    display: inline-flex;
-    position: relative;
-    z-index: 1001;
-    width: 44px;
-    height: 44px;
   }
 }
 
 /* Tablet: give the logo/actions row a touch more breathing room before
-   the mobile drawer breakpoint. */
-@media (min-width: 768px) and (max-width: 960px) {
+   the mobile breakpoint. */
+@media (min-width: 768px) and (max-width: 900px) {
   .bn-navbar-inner {
     padding: 0.75rem 2rem;
+  }
+}
+
+/* Small phones: the CTAs are now always visible here (no drawer to tuck
+   them into), so give them a bit less padding and drop the tagline to
+   keep the whole row on one line without crowding. */
+@media (max-width: 480px) {
+  .bn-navbar-inner {
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+  }
+  .bn-logo-tagline {
+    display: none;
+  }
+  .bn-navbar-cta-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.82rem;
   }
 }

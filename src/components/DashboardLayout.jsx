@@ -26,7 +26,7 @@ export default function DashboardLayout({ children }) {
         {children}
       </div>
       <ReleaseBanner />
-      <BottomTabBar onMoreClick={() => setMoreOpen((o) => !o)} moreActive={moreOpen} />
+      <BottomTabBar variant="dashboard" onMoreClick={() => setMoreOpen((o) => !o)} moreActive={moreOpen} />
     </div>
   );
 }

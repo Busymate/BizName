@@ -28,7 +28,6 @@ const MORE_NAV_ITEMS = [
 export default function Sidebar({ open, onClose }) {
   const { profile, logout } = useAuth();
   const initial = (profile?.full_name || profile?.email || '?').trim().charAt(0).toUpperCase();
-  const isPremium = profile?.plan === 'premium';
 
   return (
     <>
@@ -51,9 +50,6 @@ export default function Sidebar({ open, onClose }) {
               <span className="bn-sidebar-mobile-profile-text">
                 <span className="bn-sidebar-mobile-profile-name">{profile.full_name || profile.email.split('@')[0]}</span>
                 <span className="bn-sidebar-mobile-profile-email">{profile.email}</span>
-                <span className={`bn-plan-pill ${isPremium ? 'bn-plan-pill-premium' : ''}`}>
-                  {isPremium ? 'Premium' : 'Free Plan'}
-                </span>
               </span>
             </Link>
           )}
@@ -91,17 +87,6 @@ export default function Sidebar({ open, onClose }) {
               </NavLink>
             ))}
           </nav>
-
-          {!isPremium && (
-            <Link to="/settings" className="bn-sidebar-upgrade" onClick={onClose}>
-              <span className="bn-sidebar-upgrade-icon"><i className="fa-solid fa-crown" /></span>
-              <span className="bn-sidebar-upgrade-text">
-                <span className="bn-sidebar-upgrade-title">Upgrade to Pro</span>
-                <span className="bn-sidebar-upgrade-sub">Unlock unlimited access to premium tools and features.</span>
-              </span>
-              <i className="fa-solid fa-chevron-right bn-sidebar-upgrade-chevron" />
-            </Link>
-          )}
 
           <div className="bn-sidebar-mobile-section">
             <p className="bn-sidebar-mobile-section-title">Support</p>

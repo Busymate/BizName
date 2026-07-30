@@ -240,55 +240,6 @@
   text-decoration: underline;
 }
 
-.bn-auth-divider {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 1.35rem 0 1.1rem;
-  color: var(--bn-text-secondary);
-  font-size: 0.78rem;
-}
-
-.bn-auth-divider::before,
-.bn-auth-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--bn-border);
-}
-
-.bn-auth-oauth-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-.bn-auth-oauth-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  padding: 0.7rem 0.9rem;
-  border-radius: 12px;
-  border: 1.5px solid var(--bn-border);
-  background: var(--bn-surface);
-  color: var(--bn-text);
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.bn-auth-oauth-btn:hover:not(:disabled) {
-  border-color: var(--bn-primary);
-  background: var(--bn-primary-soft);
-}
-
-.bn-auth-oauth-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 .bn-auth-success-box {
   display: flex;
   gap: 0.75rem;
@@ -396,9 +347,6 @@
   }
   .bn-auth-form-title {
     font-size: 1.4rem;
-  }
-  .bn-auth-oauth-row {
-    grid-template-columns: 1fr;
   }
   .bn-referral-rewards-box {
     flex-direction: column;

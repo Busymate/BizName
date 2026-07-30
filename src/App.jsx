@@ -24,7 +24,6 @@ const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
-const PaymentCallback = lazy(() => import('./pages/PaymentCallback'));
 const SavedItems = lazy(() => import('./pages/SavedItems'));
 const Customers = lazy(() => import('./pages/Customers'));
 const Referrals = lazy(() => import('./pages/Referrals'));
@@ -185,7 +184,6 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/payment/callback" element={<PrivateRoute><PaymentCallback /></PrivateRoute>} />
           <Route path="/dashboard" element={<PrivateRoute><DashboardLayout><Dashboard /></DashboardLayout></PrivateRoute>} />
           <Route path="/ai-assistant" element={<PrivateRoute><DashboardLayout><AIAssistant /></DashboardLayout></PrivateRoute>} />
           <Route path="/invoice/:id" element={<PrivateRoute><DashboardLayout><InvoiceDetails /></DashboardLayout></PrivateRoute>} />

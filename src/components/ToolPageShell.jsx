@@ -29,7 +29,6 @@ function defaultFaq(title) {
   return [
     { q: `Is ${title} free to use?`, a: `Yes — ${title} is completely free on BizName, with no sign-up required to try it out.` },
     { q: 'Is my data saved automatically?', a: 'No. Nothing is saved until you press "Save Result". Once saved (free account), it appears instantly in Saved Items and your dashboard history — no page refresh needed.' },
-    { q: `Can I use ${title} on my phone?`, a: `Yes, ${title} is fully responsive and works smoothly on phones, tablets and desktops.` },
   ];
 }
 
@@ -378,8 +377,6 @@ export default function ToolPageShell({
           </div>
         </div>
       )}
-
-      
 
       {recentTools.length > 0 && (
         <div className="bn-recent-tools">

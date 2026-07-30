@@ -278,3 +278,14 @@
     width: calc(100vw - 1.5rem);
   }
 }
+
+/* The bottom tab bar (public site nav or the dashboard's own bar) is
+   fixed on every mobile/tablet page below 900px, so the bubble needs to
+   sit just above it instead of overlapping it — a small shift up, not
+   a big relocation. Placed after the 480px block above so it wins on
+   the `bottom` property at every width in this range. */
+@media (max-width: 900px) {
+  .bn-float-ai {
+    bottom: calc(58px + env(safe-area-inset-bottom, 0px) + 0.75rem);
+  }
+}
